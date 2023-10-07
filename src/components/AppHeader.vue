@@ -1,7 +1,31 @@
 <template>
-  <div class="mt-[500px]">Hello</div>
+
+<nav class="bg-white border-gray-200 dark:bg-gray-900">
+  <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+  <RouterLink to="/" class="flex items-center">
+      <img src="/src/assets/images/squirrel-icon.svg" class="h-8 mr-3" alt="Flowbite Logo" />
+      <span class="self-center text-2xl text-primary font-semibold whitespace-nowrap ">Squirrel</span>
+  </RouterLink>
+  <div class="flex md:order-2">
+      <button type="button" class="text-white bg-primary hover:bg-primary  focus:outline-none  font-medium rounded-lg text-sm px-4 py-2 text-center mr-3 md:mr-0 ">Get started</button>
+  </div>
+  <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-cta">
+    <ul class="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white ">
+      <li>
+        <RouterLink to="/" class="p-2 cursor-pointer hover:text-primary text-xl">Home</RouterLink>
+      </li>
+      <li>
+        <RouterLink to="/about" class="p-2 cursor-pointer hover:text-primary text-xl">About</RouterLink>
+      </li>
+    </ul>
+  </div>
+  </div>
+</nav>
+
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { RouterLink } from 'vue-router'
+</script>
 
 <style lang="scss" scoped></style>

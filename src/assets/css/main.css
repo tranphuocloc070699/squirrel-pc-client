@@ -1,0 +1,17 @@
+@import './base.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: 'Roboto', system-ui, sans-serif;
+    line-height: 1.8rem;
+  }
+  html,
+  body {
+    height: 100%;
+    margin: 0;
+  }
+}

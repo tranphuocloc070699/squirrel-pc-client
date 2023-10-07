@@ -1,11 +1,15 @@
+<template>
+  <LayoutDefault>
+    <Searcher></Searcher>
+  </LayoutDefault>
+</template>
+
 <script setup lang="ts">
-import AppHeader from '@/components/AppHeader.vue'
+import Searcher from '@/components/Searcher.vue';
+import LayoutDefault from '@/layouts/LayoutDefault.vue'
+
 </script>
 
-<template>
-  <header>
-    <AppHeader />
-  </header>
-  <main></main>
-  <footer></footer>
-</template>
+<style scoped>
+
+</style>
