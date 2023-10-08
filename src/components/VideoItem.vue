@@ -1,0 +1,48 @@
+<template>
+     <RouterLink to=""
+    class="flex flex-col justify-between border border-df rounded cursor-pointer hover:shadow transition-shadow"
+  >
+    <div>
+      <img
+        :src="video.thumbnails[0]"
+        alt="Image"
+        class="w-full h-48 object-cover rounded-t-sm"
+      />
+      <div class="p-4">
+        <h3 class="text-xl mb-1">{{ video.title }}</h3>
+        <h4 class="text-sm inline-block border border-primary rounded text-primary px-4 py-1   hover:bg-primary hover:text-white">
+          {{ video.channel }}
+        </h4>
+      </div>
+    </div>
+
+    <div  class="flex items-center justify-between p-4">
+      <h5 v-if="!showDownload" class="text-sm text-gray-500">{{ video.views }}</h5>
+      <h5 v-if="!showDownload" class="text-sm text-gray-500">{{ video.publish_time }}</h5>
+      <div class="w-full ">
+        <p class="text-sm font-semibold text-slate-500"><span>{{ video.download_counter }}</span> lượt tải </p>
+        <!-- <img src="/src/assets/images/download-icon.svg"/> -->
+      </div>
+    </div>
+  </RouterLink>
+</template>
+
+<script setup lang="ts">
+import { RouterLink } from 'vue-router';
+import type {IVideoItem} from '../types/index'
+
+defineProps({
+    video: {
+      type: Object as () => IVideoItem,
+      required: true
+    },
+    showDownload: {
+      type: Boolean,
+      default: false
+    }
+})
+</script>
+
+<style scoped>
+
+</style>
