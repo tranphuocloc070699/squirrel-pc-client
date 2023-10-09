@@ -10,3 +10,11 @@ export interface IVideoItem{
     url_suffix: string,
     download_counter?:number
 }
+
+export interface IDownloadItem{
+    size: string,
+    f: string,
+    q: string,
+    q_text: string,
+    k: string
+}

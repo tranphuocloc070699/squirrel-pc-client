@@ -19,9 +19,8 @@
     <div  class="flex items-center justify-between p-4">
       <h5 v-if="!showDownload" class="text-sm text-gray-500">{{ video.views }}</h5>
       <h5 v-if="!showDownload" class="text-sm text-gray-500">{{ video.publish_time }}</h5>
-      <div class="w-full ">
-        <p class="text-sm font-semibold text-slate-500"><span>{{ video.download_counter }}</span> lượt tải </p>
-        <!-- <img src="/src/assets/images/download-icon.svg"/> -->
+      <div v-if="showDownload" class="w-full ">
+        <p  class="text-sm font-semibold text-slate-500"><span>{{ video.download_counter }}</span> lượt tải </p>
       </div>
     </div>
   </RouterLink>

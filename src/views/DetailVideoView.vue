@@ -1,13 +1,15 @@
 <template>
     <div>
         <h1>DetailVideoView</h1>
-        <div class="mt-8 mx-auto max-w-sm w-full">
-            <VideoItem :video="video" :show-download="true"></VideoItem>
+        <div class="mt-8 mx-auto max-w-2xl w-full flex items-start justify-between flex-wrap px-4 md:px-0">
+            <VideoItem  class="w-full md:max-w-xs" :video="video" :show-download="true"></VideoItem>
+            <DownloadList  />
         </div>
     </div>
 </template>
 
 <script setup lang="ts">
+import  DownloadList from '@/components/DownloadList.vue';
 import VideoItem from '@/components/VideoItem.vue';
 import type { IVideoItem } from '@/types';
 
