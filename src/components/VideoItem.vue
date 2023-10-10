@@ -1,5 +1,5 @@
 <template>
-     <RouterLink to=""
+     <RouterLink :to="`/video/${video.id}`"
     class="flex flex-col justify-between border border-df rounded cursor-pointer hover:shadow transition-shadow"
   >
     <div>
@@ -9,8 +9,8 @@
         class="w-full h-48 object-cover rounded-t-sm"
       />
       <div class="p-4">
-        <h3 class="text-xl mb-1">{{ video.title }}</h3>
-        <h4 class="text-sm inline-block border border-primary rounded text-primary px-4 py-1   hover:bg-primary hover:text-white">
+        <h3 class="text-xl mb-1">{{ video.title }} <span class="text-sm">({{ video.duration }})</span></h3>
+        <h4 class="mt-2 text-sm inline-block border border-primary rounded text-primary px-4 py-1   hover:bg-primary hover:text-white">
           {{ video.channel }}
         </h4>
       </div>
@@ -29,6 +29,8 @@
 <script setup lang="ts">
 import { RouterLink } from 'vue-router';
 import type {IVideoItem} from '../types/index'
+
+
 
 defineProps({
     video: {

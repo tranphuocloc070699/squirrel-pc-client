@@ -1,10 +1,10 @@
 import axios from "axios"
 
 export const AxiosBackend = axios.create({
-    baseURL: process.env.BASE_URL_BACKEND,
+    baseURL: import.meta.env.VITE_BASE_URL_BACKEND,
     headers: {
         "Content-Type": "application/json",
     },
+    timeout: 5000,
 })
 
-console.log(process.env.BASE_URL_BACKEND)

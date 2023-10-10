@@ -1,35 +1,46 @@
 <template>
-    <div>
-        <h1>DetailVideoView</h1>
-        <div class="mt-8 mx-auto max-w-2xl w-full flex items-start justify-between flex-wrap px-4 md:px-0">
-            <VideoItem  class="w-full md:max-w-xs" :video="video" :show-download="true"></VideoItem>
-            <DownloadList  />
-        </div>
+  <LayoutDefault>
+    <div
+      class="mt-8 mx-auto max-w-2xl w-full flex items-start justify-between flex-wrap px-4 md:px-0"
+    >
+      <VideoItemSkeleton v-show="youtubeStore.searchVideoLoading"/>
+      <VideoItem  v-if="youtubeStore.searchVideos[0]" class="w-full md:max-w-xs" :video="youtubeStore.searchVideos[0]" :show-download="true"></VideoItem>
+      <DownloadList />
+
     </div>
+  </LayoutDefault>
 </template>
 
 <script setup lang="ts">
-import  DownloadList from '@/components/DownloadList.vue';
-import VideoItem from '@/components/VideoItem.vue';
-import type { IVideoItem } from '@/types';
+import DownloadList from '@/components/DownloadList.vue'
+import VideoItem from '@/components/VideoItem.vue'
+import LayoutDefault from '@/layouts/LayoutDefault.vue'
+import type { IParams, IVideoItem } from '@/types'
+import { useRoute } from 'vue-router'
+import { reactive, watch } from 'vue'
+import { useYoutubeStore } from '@/stores/youtube.store'
+import  VideoItemSkeleton from '@/components/Loading/VideoItemSkeleton.vue'
 
-    const video : IVideoItem =  {
-        "id": "RfAB6nYMG4g",
-        "thumbnails": [
-            "https://i.ytimg.com/vi/RfAB6nYMG4g/hq720.jpg?sqp=-oaymwEjCOgCEMoBSFryq4qpAxUIARUAAAAAGAElAADIQj0AgKJDeAE=&rs=AOn4CLCDHks9uEmoso5TvCsQSt1NiTJwXQ",
-            "https://i.ytimg.com/vi/RfAB6nYMG4g/hq720.jpg?sqp=-oaymwEXCNAFEJQDSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLCdKqbTlikpMX3kz_toYGr8lsoaqg"
-        ],
-        "title": "ĐỔI THAY - HỒ QUANG HIẾU | OFFICIAL MV (4K)",
-        "long_desc": null,
-        "channel": "Hồ Quang Hiếu TV",
-        "duration": "7:15",
-        "views": "97.449.679 lượt xem",
-        "publish_time": "7 năm trước",
-        "url_suffix": "/watch?v=RfAB6nYMG4g&pp=ygULxJDhu5VpIHRoYXk%3D",
-        download_counter:125
+const route = useRoute()
+const youtubeStore = useYoutubeStore()
+watch(
+  () => route.params,
+  async (routeParams) => {
+    if (routeParams?.id && typeof routeParams?.id === 'string') {
+      const getListDownloadFromY2MateResponse = youtubeStore.getListDownloadFromY2Mate(
+        routeParams.id
+      )
+
+      const searchParams: IParams = {
+        keyword: `https://www.youtube.com/watch?v=${routeParams.id}`,
+        size: '1'
+      }
+      const getDetailVideoResponse = youtubeStore.searchByKeyword(searchParams)
+  
     }
+  },
+  { immediate: true }
+)
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>
