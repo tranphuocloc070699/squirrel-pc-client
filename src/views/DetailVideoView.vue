@@ -1,7 +1,7 @@
 <template>
   <LayoutDefault>
     <div
-      class="mt-8 mx-auto max-w-2xl w-full flex items-start justify-between flex-wrap px-4 md:px-0"
+      class="mt-8 mx-auto max-w-4xl w-full flex items-start justify-between flex-wrap px-4 md:px-0"
     >
       <VideoItemSkeleton v-show="youtubeStore.searchVideoLoading"/>
       <VideoItem  v-if="youtubeStore.searchVideos[0]" class="w-full md:max-w-xs" :video="youtubeStore.searchVideos[0]" :show-download="true"></VideoItem>

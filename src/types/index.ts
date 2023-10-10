@@ -46,6 +46,16 @@ export interface IDownloadItem{
     q_text: string,
     k: string
 }
+export interface ILinkDownloadResponse{
+  c_status:string,
+  dlink:string,
+  fquality:string,
+  ftype:string,
+  mess:string,
+  status:string,
+  title:string,
+  vid:string
+}
 
 export interface IParams{
     [key:string]:string | number
