@@ -11,7 +11,7 @@
       <div class="p-4">
         <h3 class="text-xl mb-1">{{ video.title }} <span class="text-sm">({{ video.duration }})</span></h3>
         <h4 class="mt-2 text-sm inline-block border border-primary rounded text-primary px-4 py-1   hover:bg-primary hover:text-white">
-          {{ video.channel }}
+          {{ video.channel_name }}
         </h4>
       </div>
     </div>

@@ -15,9 +15,9 @@
 import DownloadList from '@/components/DownloadList.vue'
 import VideoItem from '@/components/VideoItem.vue'
 import LayoutDefault from '@/layouts/LayoutDefault.vue'
-import type { IParams, IVideoItem } from '@/types'
+import type { IParams } from '@/types'
 import { useRoute } from 'vue-router'
-import { reactive, watch } from 'vue'
+import {  watch } from 'vue'
 import { useYoutubeStore } from '@/stores/youtube.store'
 import  VideoItemSkeleton from '@/components/Loading/VideoItemSkeleton.vue'
 
@@ -27,7 +27,7 @@ watch(
   () => route.params,
   async (routeParams) => {
     if (routeParams?.id && typeof routeParams?.id === 'string') {
-      const getListDownloadFromY2MateResponse = youtubeStore.getListDownloadFromY2Mate(
+      youtubeStore.getListDownloadFromY2Mate(
         routeParams.id
       )
 
@@ -35,7 +35,7 @@ watch(
         keyword: `https://www.youtube.com/watch?v=${routeParams.id}`,
         size: '1'
       }
-      const getDetailVideoResponse = youtubeStore.searchByKeyword(searchParams)
+  youtubeStore.searchByKeyword(searchParams)
   
     }
   },

@@ -5,9 +5,10 @@ import type { IListDownloadY2MateResponse,ILinkDownloadResponse, IParams, IVideo
 
 export default{
     searchByKeyWord:(payload : IParams) =>{
-        return AxiosBackend.get<IVideoItem[]>(`/youtube/search`,{
-            params:payload
-        })
+        return AxiosBackend.post<IVideoItem[]>(`/youtube/search`,payload)
+    },
+    listVideoByChannelId:(payload : IParams) =>{
+        return AxiosBackend.post<IVideoItem[]>(`/youtube/channel/videos`,payload)
     },
 
     getListDownloadFromY2Mate:(id : string) =>{
