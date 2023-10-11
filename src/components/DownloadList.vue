@@ -2,12 +2,12 @@
   <div >
     <h3 class="border border-df  border-b-0 inline-block px-2 py-1 font-medium text-slate-600 mt-8 md:mt-0">Download Video</h3>
     <div class="border border-df  flex flex-wrap">
-      <DownloadItem v-for="item in getVideos" :key="item.k" :download="item" />
+      <DownloadItem v-for="item in getVideos" :key="item.format_id" :download="item" />
     </div>
-    <div  v-if="getAudios.success" class="mt-8">
+    <div  v-if="getAudios.length>0" class="mt-8">
       <h3 class="border border-df  border-b-0 inline-block px-2 py-1 font-medium text-slate-600">Download Audio</h3>
       <div class="border border-df  flex flex-wrap">
-        <DownloadItem v-if="getAudios.data" :download="getAudios.data" />
+        <DownloadItem v-for="item in getAudios"  :key="item.format_id" :download="item" />
       </div>
     </div>
   </div>
@@ -27,28 +27,28 @@ interface IAudio {
 
 
 const getAudios = computed(() => {
-  const audio : IAudio = {
-    success: false,
+  
+  const audios :IDownloadItem[] = []
+  const audioResponse = youtubeStore.listDownload?.formats
+  if(audioResponse){
+    for (const key in audioResponse) {
+    const value =audioResponse[key]
+    if (value.video_ext === 'none') {
+      audios.push(value)
+    }
   }
-  const audioResponse =youtubeStore.listDownloadFromY2Mates?.links?.mp3
-  if (audioResponse?.mp3128) {
-    
-    audio.success = true
-    audio.data = audioResponse?.mp3128
-  } else {
-    audio.success = false
   }
-  return audio
+  return audios
 })
 
 const getVideos = computed(() => {
   const qualities = ['1440p','1080p', '720p', '480p', '360p']
-  const videos = []
-  const videoResponse = youtubeStore.listDownloadFromY2Mates?.links?.mp4
+  const videos :IDownloadItem[] = []
+  const videoResponse = youtubeStore.listDownload?.formats
   if(videoResponse){
     for (const key in videoResponse) {
     const value =videoResponse[key]
-    if (value.f === 'mp4' && qualities.includes(value.q)) {
+    if (value.video_ext === 'mp4') {
       videos.push(value)
     }
   }
@@ -57,19 +57,6 @@ const getVideos = computed(() => {
   return videos
 })
 
-// const getVideos = () => {
-//     const qualities = ["1080p", "720p", "480p", "360p"];
-//     // qualities.forEach((quality,index) => {
-
-//     // });
-//     for(const key in response.links.mp4){
-//         const value = response.links.mp4[key as keyof typeof response.links.mp4];
-//         if(value.f === "mp4" && qualities.includes(value.q)){
-//             console.log(value);
-//         }
-//     }
-//     return response.links.mp4
-// }
 
 onMounted(() => {})
 </script>

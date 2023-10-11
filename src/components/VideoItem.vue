@@ -4,7 +4,7 @@
   >
     <div>
       <img
-        :src="video.thumbnails[0]"
+        :src="video.thumbnails[0].url"
         alt="Image"
         class="w-full h-48 object-cover rounded-t-sm"
       />

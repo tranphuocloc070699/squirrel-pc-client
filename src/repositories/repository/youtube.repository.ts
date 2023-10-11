@@ -1,5 +1,5 @@
 import { AxiosBackend } from "../axios";
-import type { IListDownloadY2MateResponse,ILinkDownloadResponse, IParams, IVideoItem } from "@/types";
+import type { ILinkDownloadResponse, IParams, IVideoItem } from "@/types";
 
 
 
@@ -11,12 +11,7 @@ export default{
         return AxiosBackend.post<IVideoItem[]>(`/youtube/channel/videos`,payload)
     },
 
-    getListDownloadFromY2Mate:(id : string) =>{
-        return AxiosBackend.get<IListDownloadY2MateResponse>(`/youtube/video/download/list/${id}`)
+    getListDownload:(id : string) =>{
+        return AxiosBackend.post<ILinkDownloadResponse>(`/youtube/video/download`,{id})
     },
-    downloadMediaFromY2Mate:(payload : IParams) =>{
-        return AxiosBackend.get<ILinkDownloadResponse>(`/youtube/video/download`,{
-            params:payload
-        })
-    }
 }

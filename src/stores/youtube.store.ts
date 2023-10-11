@@ -1,16 +1,16 @@
 import { ref } from 'vue'
 import { defineStore } from 'pinia'
-import type { IParams, IVideoItem, IListDownloadY2MateResponse } from '@/types'
+import type { IParams, IVideoItem, ILinkDownloadResponse } from '@/types'
 import RepositoryFactory from '@/repositories/factory'
 import { logError } from '@/utils/logError'
 
 const youtubeRepository = RepositoryFactory.get('youtube')
 export const useYoutubeStore = defineStore('youtube', () => {
   const searchVideoLoading = ref(false)
-  const getListDownloadFromY2MateLoading = ref(false)
-  const downloadMediaFromY2MateLoading = ref(false)
+  const getListDownloadLoading = ref(false)
+  const downloadMediaLoading = ref(false)
   const searchVideos = ref<IVideoItem[]>([])
-  const listDownloadFromY2Mates = ref<IListDownloadY2MateResponse | null>(null)
+  const listDownload = ref<ILinkDownloadResponse | null>(null)
 
   const searchByKeyword = async (payload: IParams) => {
     if (searchVideos.value.length > 0) {
@@ -28,39 +28,28 @@ export const useYoutubeStore = defineStore('youtube', () => {
     }
   }
 
-  const getListDownloadFromY2Mate = async (id: string) => {
-    getListDownloadFromY2MateLoading.value = true
+  const getListDownload = async (id: string) => {
+    getListDownloadLoading.value = true
     try {
-      const response = await youtubeRepository?.getListDownloadFromY2Mate(id)
-      if (response?.data) listDownloadFromY2Mates.value = response?.data
+      const response = await youtubeRepository?.getListDownload(id)
+      if (response?.data) listDownload.value = response?.data
       return response?.data
     } catch (error) {
-      logError(error, '[STORE] useYoutubeStore/getListDownloadFromY2Mate')
+      logError(error, '[STORE] useYoutubeStore/getListDownload')
     } finally {
-      getListDownloadFromY2MateLoading.value = false
+      getListDownloadLoading.value = false
     }
   }
 
-  const downloadMediaFromY2Mate = async (payload: IParams) => {
-    downloadMediaFromY2MateLoading.value = true
-    try {
-      const response = await youtubeRepository?.downloadMediaFromY2Mate(payload)
-      return response?.data
-    } catch (error) {
-      logError(error, '[STORE] useYoutubeStore/downloadMediaFromY2Mate')
-    } finally {
-      downloadMediaFromY2MateLoading.value = false
-    }
-  }
+ 
 
   return {
     searchVideoLoading,
-    getListDownloadFromY2MateLoading,
-    downloadMediaFromY2MateLoading,
+    getListDownloadLoading,
+    downloadMediaLoading,
     searchVideos,
-    listDownloadFromY2Mates,
+    listDownload,
     searchByKeyword,
-    getListDownloadFromY2Mate,
-    downloadMediaFromY2Mate
+    getListDownload,
   }
 })

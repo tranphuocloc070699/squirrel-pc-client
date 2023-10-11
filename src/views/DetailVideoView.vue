@@ -27,7 +27,7 @@ watch(
   () => route.params,
   async (routeParams) => {
     if (routeParams?.id && typeof routeParams?.id === 'string') {
-      youtubeStore.getListDownloadFromY2Mate(
+      youtubeStore.getListDownload(
         routeParams.id
       )
 
