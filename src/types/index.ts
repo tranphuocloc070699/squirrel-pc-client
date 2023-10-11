@@ -10,6 +10,20 @@ export interface IVideoItem {
   download_counter?: number
 }
 
+export interface IChannelInfo {
+  channelId: string
+  title: string
+  thumbnails: IVideoThumbnailItem[]
+  description: string
+  subscribers: string
+  url: string
+}
+
+export interface IVideoFromChannelResponse{
+  videos: IVideoItem[]
+  channel: IChannelInfo
+}
+
 export interface IVideoThumbnailItem {
   url: string
   width: string

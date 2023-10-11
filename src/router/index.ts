@@ -19,6 +19,11 @@ const router = createRouter({
       component: () => import('../views/DetailVideoView.vue')
     },
     {
+      path: '/channel/:id',
+      name: 'channel',
+      component: () => import('../views/ChannelView.vue')
+    },
+    {
       path: '/:catchAll(.*)',
       name: 'not-found',
       component: () => import('../views/NotFoundView.vue')
