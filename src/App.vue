@@ -23,14 +23,17 @@ import { RouterView } from 'vue-router'
 
 
   &.success {
-    background: #68cd86;
-    border-left-color: #42a85f;
+    color:#087285;
+    background: white !important;
+    border :2px solid #087285 !important;
+    border-left:5px solid #087285 !important;
+    border-top:5px solid #087285 !important;
   }
 
   &.warn {
    
-    background: white !important;
     color:#f48a06;
+    background: white !important;
     border :2px solid #ffb648 !important;
     border-left:5px solid #f48a06 !important;
     border-top:5px solid #f48a06 !important;

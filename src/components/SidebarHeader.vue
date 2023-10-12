@@ -26,7 +26,7 @@
         </button>
       </div>
       <!-- Sidebar Controls All -->
-      <span class="flex items-center cursor-pointer  px-4 py-3 border-b border-gray-200">
+      <span @click="downloadAll" class="flex items-center cursor-pointer  px-4 py-3 border-b border-gray-200">
         <p class="text-base hover:underline font-semibold text-green_379 text-center">Download All</p>
         <img src="/src/assets/images/download-icon.svg" width="16" height="16" class=" ml-2 mb-[2px]" />
        
@@ -34,7 +34,9 @@
 
       <!-- Sidebar content -->
       <div>
-        <SidebarVideoItem v-for="item in 6" :key="item" />
+        <transition-group name="sidebar-item" tag="div">
+          <SidebarVideoItem v-for="item in youtubeStore.savedVideos" :key="item.id" :video="item" />
+        </transition-group>
       </div>
     </div>
     
@@ -42,7 +44,11 @@
 </template>
 
 <script setup lang="ts">
+import type { IParams } from '@/types';
 import SidebarVideoItem from './SidebarVideoItem.vue';
+import { useYoutubeStore } from '@/stores/youtube.store';
+
+const youtubeStore = useYoutubeStore()
  defineProps({
     showSidebar: {
         type: Boolean,
@@ -50,12 +56,53 @@ import SidebarVideoItem from './SidebarVideoItem.vue';
     }
     })
 
-    const toggleSidebar = () => {
-        
-    }
+  const downloadAll = () =>{
+    
+    youtubeStore.savedVideos.forEach((item) => {
+     
+  const title = `${item.title} - ${item.channel_name}`
+  // const params: IParams = {
+  //   url,
+  //   title
+  // }
+    youtubeStore.getListDownload(item.id)
+
+
+    //   youtubeStore.downloadMediaFile(params, handleProgress)
+    // .then((response) => {
+    //   if (response) {
+    //     progress.downloadProgress = 0
+    //     progress.showProgressBar = false
+
+    //     const blob = new Blob([response])
+    //     const url = window.URL.createObjectURL(blob)
+    //     const a = document.createElement('a')
+    //     a.href = url
+    //     a.download = title + `${props.isAudio ? '.mp3' : '.mp4'}` // Replace with the desired file name
+    //     a.style.display = 'none'
+    //     a.target = '_blank'
+    //     document.body.appendChild(a)
+    //     a.click()
+    //     window.URL.revokeObjectURL(url)
+    //   }
+    // })
+    // .catch((error) => {
+    //   logError(error, '[Browser DownloadItem/downloadFile]')
+    // })
+    })
+  }
 
 </script>
 
 <style scoped>
+.sidebar-item-enter-active,
+.sidebar-item-leave-active {
+  transition: all 0.3s ease;
+}
 
+.sidebar-item-enter,
+.sidebar-item-leave-to {
+  opacity: 0;
+  transform: translateY(-10px);
+}
 </style>

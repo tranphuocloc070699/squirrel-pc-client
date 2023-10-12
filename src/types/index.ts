@@ -2,8 +2,8 @@ export interface IVideoItem {
   id: string
   thumbnails: Array<IVideoThumbnailItem>
   title: string
-  channel_name: string
-  channel_id: string
+  channel_name?: string
+  channel_id?: string
   duration: string
   views: string
   publish_time: string

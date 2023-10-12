@@ -7,15 +7,9 @@
           >Squirrel</span
         >
       </span>
-      <div class="flex md:order-2">
+      <div class="md:order-2 relative">
         <img  class="cursor-pointer" @click="showSidebar = true" width="32" height="32" src="/src/assets/images/gallery.svg" />
-        <!-- <button
-      
-          type="button"
-          class="text-white bg-primary hover:bg-primary focus:outline-none font-medium rounded-lg text-sm px-4 py-2 text-center mr-3 md:mr-0"
-        >
-          Get started
-        </button> -->
+        <span v-show="youtubeStore.savedVideos.length>0" class="absolute text-xs h-5 w-5 top-[-7px] right-[-8px] flex items-center justify-center text-white bg-red-600 rounded-full p-1">{{ youtubeStore.savedVideos.length }}</span>
       </div>
       <div
         class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1"
@@ -46,19 +40,26 @@
 import { RouterLink, useRouter } from 'vue-router'
 
 import { useYoutubeStore } from '@/stores/youtube.store'
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
 import SidebarHeader from './SidebarHeader.vue';
+import type { IVideoItem } from '@/types';
 const router = useRouter()
 const youtubeStore = useYoutubeStore()
 
 const showSidebar = ref(false)
 
 const handleBackToHome = () => {
-  if (youtubeStore.searchVideos.length > 0) {
-    youtubeStore.searchVideos = []
-  }
+  // if (youtubeStore.searchVideos.length > 0) {
+  //   youtubeStore.searchVideos = []
+  // }
   router.push({ path: '/' })
 }
+
+onMounted(() =>{
+ const savedVideos : IVideoItem[] = localStorage.getItem('savedVideos') ? JSON.parse(localStorage.getItem('savedVideos')!) : []
+  youtubeStore.savedVideos = savedVideos
+})
+
 </script>
 
 <style lang="scss" scoped></style>

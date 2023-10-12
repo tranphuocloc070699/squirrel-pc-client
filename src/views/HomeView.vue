@@ -10,10 +10,15 @@ import Searcher from '@/components/Searcher.vue';
 import VideoList from '@/components/VideoList.vue';
 import LayoutDefault from '@/layouts/LayoutDefault.vue'
 import { useYoutubeStore } from '@/stores/youtube.store';
+import { onMounted } from 'vue';
 
 const youtubeStore = useYoutubeStore()
 
-  
+onMounted(() =>{
+  if(youtubeStore.searchVideos.length>0){
+    youtubeStore.searchVideos = []
+  }
+})  
 
 </script>
 

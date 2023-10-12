@@ -14,6 +14,7 @@ export const useYoutubeStore = defineStore('youtube', () => {
 
 
   const searchVideos = ref<IVideoItem[]>([])
+  const savedVideos = ref<IVideoItem[]>([])
   const channelInfo = ref<IChannelInfo>({
     channelId: '',
     title: '',
@@ -94,6 +95,7 @@ export const useYoutubeStore = defineStore('youtube', () => {
     downloadMediaLoading,
     searchVideos,
     listDownload,
+    savedVideos,
     channelInfo,
     listVideoByChannelId,
     searchByKeyword,
