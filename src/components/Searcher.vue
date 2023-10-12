@@ -23,7 +23,7 @@
         v-model="searchData.keyword"
       />
       <button
-        class="bg-primary text-white font-medium outline-none border-none mr-1 px-4 rounded-sm hidden md:block"
+        class="bg-primary text-white font-medium outline-none border-none m-1 px-4 rounded-sm hidden md:block"
         type="submit"
       >
         SEARCH

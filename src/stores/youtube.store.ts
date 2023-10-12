@@ -3,6 +3,7 @@ import { defineStore } from 'pinia'
 import type { IParams, IVideoItem, ILinkDownloadResponse, IChannelInfo } from '@/types'
 import RepositoryFactory from '@/repositories/factory'
 import { logError } from '@/utils/logError'
+import type { AxiosProgressEvent } from 'axios'
 
 const youtubeRepository = RepositoryFactory.get('youtube')
 
@@ -10,6 +11,7 @@ export const useYoutubeStore = defineStore('youtube', () => {
   const searchVideoLoading = ref(false)
   const getListDownloadLoading = ref(false)
   const downloadMediaLoading = ref(false)
+
 
   const searchVideos = ref<IVideoItem[]>([])
   const channelInfo = ref<IChannelInfo>({
@@ -47,8 +49,8 @@ export const useYoutubeStore = defineStore('youtube', () => {
       const response = await youtubeRepository?.listVideoByChannelId(id)
       if (response?.data) {
         searchVideos.value = response?.data?.videos.map(item => {
-          item.channel_id = response?.data?.channel.channelId
-          item.channel_name = response?.data?.channel.title
+          item.channel_id = response?.data?.channel?.channelId
+          item.channel_name = response?.data?.channel?.title
           return item
         })
         channelInfo.value = response?.data?.channel
@@ -74,6 +76,18 @@ export const useYoutubeStore = defineStore('youtube', () => {
     }
   }
 
+  const downloadMediaFile = async (payload: IParams,onDownloadProgress : (progressEvent: AxiosProgressEvent) => void) => {
+    downloadMediaLoading.value= true
+    try {
+      const response = await youtubeRepository?.downloadMediaFile(payload,onDownloadProgress)
+      return response?.data
+    } catch (error) {
+      logError(error, '[STORE] downloadMediaFile/getListDownload')
+    } finally {
+      downloadMediaLoading.value = false
+    }
+  }
+
   return {
     searchVideoLoading,
     getListDownloadLoading,
@@ -83,6 +97,7 @@ export const useYoutubeStore = defineStore('youtube', () => {
     channelInfo,
     listVideoByChannelId,
     searchByKeyword,
-    getListDownload
+    getListDownload,
+    downloadMediaFile
   }
 })

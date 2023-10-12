@@ -4,15 +4,15 @@
       <img :src="`/src/assets/images/star.svg`" />
       <span class="ml-2 mt-1 font-semibold text-xl">CHANNEL</span>
     </h3>
-        <div v-if="!loading && props.channel.channelId.length>0"
+        <div v-if="!loading && channel.channelId.length>0"
             class="mt-8 mx-4 shadow rounded-lg p-4 inline-block"
             >
             <div class="flex  items-start ">
-                <img :src="props.channel.thumbnails[0].url" :width="props.channel.thumbnails[0].width" :height="props.channel.thumbnails[0].height" class=" object-cover rounded-full" />
+                <img v-if="channel.thumbnails.length>0" :src="channel.thumbnails[0].url" :width="channel.thumbnails[0].width" :height="channel.thumbnails[0].height" class=" object-cover rounded-full" />
             <div class="ml-6 flex flex-col justify-between">
                 <div>
-                    <h4 class="font-semibold text-xl">{{ props.channel.title }} <span class="ml-1 inline-block h-[24px] text-xs border border-blue_557 px-2 py-1 text-blue_739 rounded-3xl">{{ props.channel.subscribers }}</span></h4>
-                <h5 class="mt-3 text-sm text-slate-600">{{ props.channel.description }}</h5>
+                    <h4 class="font-semibold text-xl">{{ channel.title }} <span class="ml-1 inline-block h-[24px] text-xs border border-blue_557 px-2 py-1 text-blue_739 rounded-3xl">{{ channel.subscribers }}</span></h4>
+                <h5 class="mt-3 text-sm text-slate-600">{{ channel.description }}</h5>
                 </div>
                 <a :href="props.channel.url" target="_blank" class="mt-3 font-bold max-w-[120px] text-base text-primary">YOUTUBE LINK</a>
             </div>
@@ -27,6 +27,7 @@
 <script setup lang="ts">
 import type { IChannelInfo } from '@/types';
 import ChannelSkeleten from '@/components/Loading/ChannelSkeleten.vue';
+import { computed } from 'vue';
 const props = defineProps({
   channel: {
     type: Object as () => IChannelInfo,
@@ -37,6 +38,26 @@ const props = defineProps({
     default: false
   }
 })
+
+const channel = computed(() =>{
+    const defaultState : IChannelInfo = {
+      channelId: '',
+  title: '',
+  thumbnails: [],
+  description: '',
+  subscribers: '',
+  url: ''
+    }
+    if(props.channel.channelId) defaultState.channelId = props.channel.channelId
+    if(props.channel.title) defaultState.title = props.channel.title
+    if(props.channel.thumbnails && props.channel.thumbnails.length>0) defaultState.thumbnails = props.channel.thumbnails
+    if(props.channel.description) defaultState.description = props.channel.description
+    if(props.channel.subscribers) defaultState.subscribers = props.channel.subscribers
+    if(props.channel.url) defaultState.url = props.channel.url
+    return defaultState;
+})
+
+
 </script>
 
 <style scoped>

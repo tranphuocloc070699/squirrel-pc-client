@@ -14,6 +14,7 @@
           {{ video.title }} <span class="text-sm">({{ video.duration }})</span>
         </h3>
         <RouterLink
+        v-if="video.channel_name && video.channel_name.length>0"
         :to="`/channel/${props.video.channel_id}`"
           class="mt-2 text-sm inline-block border border-primary rounded text-primary px-4 py-1 hover:bg-primary hover:text-white"
          
@@ -26,11 +27,11 @@
     <div class="flex items-center justify-between p-4">
       <h5 v-if="!showDownload" class="text-sm text-gray-500">{{ video.views }}</h5>
       <h5 v-if="!showDownload" class="text-sm text-gray-500">{{ video.publish_time }}</h5>
-      <div v-if="showDownload" class="w-full">
+      <!-- <div v-if="showDownload" class="w-full">
         <p class="text-sm font-semibold text-slate-500">
           <span>{{ video.download_counter }}</span> lượt tải
         </p>
-      </div>
+      </div> -->
     </div>
   </RouterLink>
 </template>

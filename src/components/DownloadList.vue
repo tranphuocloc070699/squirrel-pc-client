@@ -1,13 +1,13 @@
 <template>
   <div >
     <h3 class="border border-df  border-b-0 inline-block px-2 py-1 font-medium text-slate-600 mt-8 md:mt-0">Download Video</h3>
-    <div class="border border-df  flex flex-wrap">
+    <div class="border border-df">
       <DownloadItem v-for="item in getVideos" :key="item.format_id" :download="item" />
     </div>
     <div  v-if="getAudios.length>0" class="mt-8">
       <h3 class="border border-df  border-b-0 inline-block px-2 py-1 font-medium text-slate-600">Download Audio</h3>
-      <div class="border border-df  flex flex-wrap">
-        <DownloadItem v-for="item in getAudios"  :key="item.format_id" :download="item" />
+      <div class="border border-df ">
+        <DownloadItem v-for="item in getAudios" :is-audio="true"   :key="item.format_id" :download="item" />
       </div>
     </div>
   </div>
@@ -20,21 +20,26 @@ import type { IDownloadItem } from '../types/index'
 import { useYoutubeStore } from '@/stores/youtube.store';
 
 const youtubeStore= useYoutubeStore();
-interface IAudio {
-    success: boolean
-    data?: IDownloadItem
-}
 
 
 const getAudios = computed(() => {
   
   const audios :IDownloadItem[] = []
-  const audioResponse = youtubeStore.listDownload?.formats
-  if(audioResponse){
-    for (const key in audioResponse) {
-    const value =audioResponse[key]
-    if (value.video_ext === 'none') {
+  const mediaResponse = youtubeStore.listDownload?.formats
+  if(mediaResponse){
+    // const sortedMedias = Object.values(mediaResponse).sort(
+    //   (a, b) => (a.filesize || 0) -( b.filesize || 0)
+    // )
+    // let minFileSizeMedia =sortedMedias.find((video) => video.video_ext === 'mp4')
+    // if(minFileSizeMedia){
+      
+    //   audios.push(minFileSizeMedia)
+    // }
+    for (const key in mediaResponse) {
+    const value =mediaResponse[key]
+    if (value.video_ext === 'mp4') {
       audios.push(value)
+      break;
     }
   }
   }
@@ -42,12 +47,11 @@ const getAudios = computed(() => {
 })
 
 const getVideos = computed(() => {
-  const qualities = ['1440p','1080p', '720p', '480p', '360p']
   const videos :IDownloadItem[] = []
-  const videoResponse = youtubeStore.listDownload?.formats
-  if(videoResponse){
-    for (const key in videoResponse) {
-    const value =videoResponse[key]
+  const mediaResponse = youtubeStore.listDownload?.formats
+  if(mediaResponse){
+    for (const key in mediaResponse) {
+    const value =mediaResponse[key]
     if (value.video_ext === 'mp4') {
       videos.push(value)
     }

@@ -1,3 +1,4 @@
+import { Axios, type AxiosProgressEvent } from "axios";
 import { AxiosBackend } from "../axios";
 import type { ILinkDownloadResponse, IParams, IVideoItem,IVideoFromChannelResponse } from "@/types";
 
@@ -12,6 +13,15 @@ export default{
     },
 
     getListDownload:(id : string) =>{
-        return AxiosBackend.post<ILinkDownloadResponse>(`/youtube/video/download`,{id})
+        return AxiosBackend.post<ILinkDownloadResponse>(`/youtube/video/download/list`,{id})
     },
+    downloadMediaFile(payload : IParams,onProgress: (progressEvent: AxiosProgressEvent) => void){
+        
+        return AxiosBackend.get<Blob>(`/youtube/video/download`,{
+            params:payload,
+            timeout:0,
+            responseType:'blob',
+            onDownloadProgress: onProgress,
+        },)
+    }
 }

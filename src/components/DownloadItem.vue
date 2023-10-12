@@ -1,72 +1,147 @@
 <template>
-    <div>
-        <button :disabled="youtubeStore.downloadMediaLoading" class="bg-primary text-white m-3 px-3 py-1 rounded cursor-pointer flex items-center" @click="downloadMedia">
-            <ButtonLoading v-show="youtubeStore.downloadMediaLoading" />
-          
-            {{ youtubeStore.downloadMediaLoading ? '' : `${download.format}-${formatBytes(props?.download?.filesize || 0)}` }}
-        </button>
+  <div class="border-b border-slate-300 last:border-b-0 flex items-center">
+    <button
+      :disabled="youtubeStore.downloadMediaLoading"
+      class="bg-primary text-white m-3 px-3 py-1 rounded cursor-pointer flex items-center"
+      @click="downloadMedia"
+    >
+      <ButtonLoading v-show="youtubeStore.downloadMediaLoading" />
+
+      {{ youtubeStore.downloadMediaLoading ? '' : `${mediaTitle}` }}
+    </button>
+    <div class="w-full bg-gray-200 rounded-full mr-4 " v-show="progress.showProgressBar">
+      <div
+        class="bg-blue_739 text-xs font-medium text-blue-100 text-center p-0.5 leading-none rounded-full whitespace-nowrap"
+        :style="{ width: `${progress.downloadProgress}%` }"
+      >
+        {{ progress.loaded }} / {{ progress.total }}
+      </div>
     </div>
+  </div>
 </template>
 
 <script setup lang="ts">
-import type {IDownloadItem} from '../types/index'
-import { useYoutubeStore } from '@/stores/youtube.store';
+import type { IDownloadItem, IParams } from '../types/index'
+import { useYoutubeStore } from '@/stores/youtube.store'
 import ButtonLoading from './Loading/ButtonLoading.vue'
-const youtubeStore = useYoutubeStore();
+import { computed, reactive, ref } from 'vue'
+import { logError } from '@/utils/logError'
+import type { AxiosProgressEvent } from 'axios'
+const youtubeStore = useYoutubeStore()
 
 const props = defineProps({
-    download: {
-      type: Object as () => IDownloadItem,
-      required: true
-    },
-    
+  download: {
+    type: Object as () => IDownloadItem,
+    required: true
+  },
+  isAudio: {
+    type: Boolean,
+    default: false
+  }
 })
 
-const formatBytes = (bytes : number) => {
-    if(typeof bytes==='string') bytes = parseInt(bytes)
-    
-    var marker = 1024; // Change to 1000 if required
-    var decimal = 3; // Change as required
-    var kiloBytes = marker; // One Kilobyte is 1024 bytes
-    var megaBytes = marker * marker; // One MB is 1024 KB
-    var gigaBytes = marker * marker * marker; // One GB is 1024 MB
-  
-    // return bytes if less than a KB
-    if(bytes < kiloBytes) return bytes + " Bytes";
-    // return KB if less than a MB
-    else if(bytes < megaBytes) return(bytes / kiloBytes).toFixed(decimal) + " KB";
-    // return MB if less than a GB
-    else if(bytes < gigaBytes) return(bytes / megaBytes).toFixed(decimal) + " MB";
-    // return GB if less than a TB
-    else return(bytes / gigaBytes).toFixed(decimal) + " GB";
+const progress = reactive({
+  showProgressBar: false,
+  downloadProgress: 0,
+  total:'',
+    loaded:''
+})
+
+const mediaTitle = computed(() => {
+  if (props.isAudio) {
+    return '192Kbs'
+  }
+  return `${extractFormat(props.download.format)}${formatBytes(props?.download?.filesize || 0)}`
+})
+
+
+
+const formatBytes = (bytes: number) => {
+  if (typeof bytes === 'string') bytes = parseInt(bytes)
+  if (isNaN(bytes) || bytes === 0) return ''
+  var marker = 1024
+  var decimal = 3
+  var kiloBytes = marker
+  var megaBytes = marker * marker
+  var gigaBytes = marker * marker * marker
+
+  // return bytes if less than a KB
+  if (bytes < kiloBytes) return ` (${bytes} Bytes)`
+  // return KB if less than a MB
+  else if (bytes < megaBytes) return ` (${(bytes / kiloBytes).toFixed(decimal)} KB)`
+  // return MB if less than a GB
+  else if (bytes < gigaBytes) return ` (${(bytes / megaBytes).toFixed(decimal)} MB)`
+  // return GB if less than a TB
+  else return ` (${(bytes / gigaBytes).toFixed(decimal)} GB)`
 }
 
-const  downloadMedia = async () =>{
-    console.log(props.download.url)
-//     if(youtubeStore.searchVideos.length > 0){
-//         const params : IParams = {
-//         vid:youtubeStore.searchVideos[0].id,
-//         k:props.download.k
-//     }
-//     console.log({params})
-//     const response = await youtubeStore.downloadMediaFromY2Mate(params);
-//     if(response && response.dlink){
-//         console.log(response.dlink)
-//         downloadFile(response.dlink)
-//     }
-// }
+const downloadMedia = async () => {
+  const url = props.download.url
+  const title = `${youtubeStore.searchVideos[0].title} - ${youtubeStore.searchVideos[0].channel_name}`
+  const params: IParams = {
+    url,
+    title
+  }
+//   if (props.isAudio) params.type = 'audio'
+
+  progress.showProgressBar = true
+
+  youtubeStore
+    .downloadMediaFile(params, handleProgress)
+    .then((response) => {
+      if (response) {
+        progress.downloadProgress = 0
+        progress.showProgressBar = false
+
+        const blob = new Blob([response])
+        const url = window.URL.createObjectURL(blob)
+        const a = document.createElement('a')
+        a.href = url
+        a.download = title + `${props.isAudio ? '.mp3' : '.mp4'}` // Replace with the desired file name
+        a.style.display = 'none'
+        a.target = '_blank'
+        document.body.appendChild(a)
+        a.click()
+        window.URL.revokeObjectURL(url)
+      }
+    })
+    .catch((error) => {
+      logError(error, '[Browser DownloadItem/downloadFile]')
+    })
 }
 
-const downloadFile = (url :string) =>{
-    const link = document.createElement('a');
-  link.href = url;
-    link.target = '_blank';
-  document.body.appendChild(link);
-  link.click();
-  document.body.removeChild(link);
+const handleProgress = (progressEvent: AxiosProgressEvent) => {
+  console.log(progressEvent)
+  progress.downloadProgress = Math.round((progressEvent.loaded / progressEvent.total!) * 100)
+  progress.total = formatBytes(progressEvent.total!)
+    progress.loaded = formatBytes(progressEvent.loaded)
+}
+
+const extractFormat = (str: string) => {
+  const qualityRegex = /\(([^)]+)\)/
+  const match = qualityRegex.exec(str)
+
+  if (match && match[1]) {
+    const videoQuality = match[1]
+    return videoQuality
+  } else {
+    return str
+  }
 }
 </script>
 
 <style scoped>
+.progress-container {
+  width: 100%;
+  height: 20px;
+  background-color: #ccc;
+  margin: 10px 0;
+}
 
+.progress {
+  height: 100%;
+  width: 0;
+  background-color: #007bff;
+  transition: width 0.3s;
+}
 </style>
