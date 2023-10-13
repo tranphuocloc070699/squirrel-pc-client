@@ -1,5 +1,6 @@
 <template>
   <div class="px-4 md:px-0">
+
     <form
       @submit.prevent="onSubmit"
       class="flex items-center mt-10 w-full max-w-2xl mx-auto border border-slate-400 rounded-sm overflow-hidden"
@@ -29,6 +30,7 @@
         SEARCH
       </button>
     </form>
+   
   </div>
 </template>
 
@@ -45,21 +47,24 @@ interface ISearch {
 }
 import { reactive } from 'vue'
 import type { IParams } from '@/types';
+import {useRoute,useRouter} from 'vue-router'
 const searchData = reactive<ISearch>({
   keyword: '',
   type: 'video'
 })
+const route = useRoute();
+const router = useRouter();
 
 const  onSubmit = async () => {
   if (searchData.keyword.trim().length <= 1) {
-    notify({
-      title: 'WARNING',
-      text: 'Please enter your keyword',
-      duration: 4000,
-      type: 'warn'
-    })
+    youtubeStore.searchVideos = []
     return;
   }
+
+  if(route.name!=='home'){
+    router.push({path:'/'})
+  }
+
   const params : IParams = {
     keyword:searchData.keyword.trim(),
     size: '20',

@@ -1,6 +1,6 @@
 import { ref } from 'vue'
 import { defineStore } from 'pinia'
-import type { IParams, IVideoItem, ILinkDownloadResponse, IChannelInfo } from '@/types'
+import type { IParams, IVideoItem, ILinkDownloadResponse, IChannelInfo, ISidebarVideoItem } from '@/types'
 import RepositoryFactory from '@/repositories/factory'
 import { logError } from '@/utils/logError'
 import type { AxiosProgressEvent } from 'axios'
@@ -14,7 +14,17 @@ export const useYoutubeStore = defineStore('youtube', () => {
 
 
   const searchVideos = ref<IVideoItem[]>([])
-  const savedVideos = ref<IVideoItem[]>([])
+  const detailVideo = ref<IVideoItem>({
+    id: '',
+    thumbnails: [],
+    title: '',
+    channel_name: '',
+    channel_id: '',
+    duration: '',
+    views: '',
+    publish_time: ''
+  })
+  const savedVideos = ref<ISidebarVideoItem[]>([])
   const channelInfo = ref<IChannelInfo>({
     channelId: '',
     title: '',
@@ -26,13 +36,31 @@ export const useYoutubeStore = defineStore('youtube', () => {
   const listDownload = ref<ILinkDownloadResponse | null>(null)
 
   const searchByKeyword = async (payload: IParams) => {
-    if (searchVideos.value.length > 0) {
-      searchVideos.value = []
+    // if (searchVideos.value.length > 0) {
+    //   searchVideos.value = []
+    // }
+    if(detailVideo.value.id.length > 0){
+      detailVideo.value = {
+        id: '',
+        thumbnails: [],
+        title: '',
+        channel_name: '',
+        channel_id: '',
+        duration: '',
+        views: '',
+        publish_time: ''
+      }
     }
     searchVideoLoading.value = true
     try {
       const response = await youtubeRepository?.searchByKeyWord(payload)
-      if (response?.data && response?.data.length > 0) searchVideos.value = response?.data
+      if (response?.data && response?.data.length > 0) {
+        if(payload.size=='1'){
+          detailVideo.value = response?.data[0]
+        }else{
+          searchVideos.value = response?.data
+        }
+      }
       return response?.data
     } catch (error) {
       logError(error, '[STORE] useYoutubeStore/searchByKeyword')
@@ -45,6 +73,7 @@ export const useYoutubeStore = defineStore('youtube', () => {
     if (searchVideos.value.length > 0) {
       searchVideos.value = []
     }
+    
     searchVideoLoading.value = true
     try {
       const response = await youtubeRepository?.listVideoByChannelId(id)
@@ -97,6 +126,7 @@ export const useYoutubeStore = defineStore('youtube', () => {
     listDownload,
     savedVideos,
     channelInfo,
+    detailVideo,
     listVideoByChannelId,
     searchByKeyword,
     getListDownload,

@@ -1,19 +1,22 @@
 <script setup lang="ts">
 import { RouterView } from 'vue-router'
+import GlobalConfig from './components/GlobalConfig.vue';
 </script>
 
 <template>
   <div>
+    <GlobalConfig>
     <RouterView />
-    <notifications />
+    <notifications position="top center" />
+  </GlobalConfig>
   </div>
 </template>
 
 <style lang="scss" >
 .vue-notification {
 
-  margin: 0 5px 5px;
-  padding: 10px;
+  margin: 60px 5px 5px;
+  padding: 6px;
   font-size: 16px !important;
   color: #ffffff;
 
@@ -37,13 +40,14 @@ import { RouterView } from 'vue-router'
     border :2px solid #ffb648 !important;
     border-left:5px solid #f48a06 !important;
     border-top:5px solid #f48a06 !important;
-    
-   
   }
 
   &.error {
-    background: #e54d42;
-    border-left-color: #b82e24;
+    color:#b82e24;
+    background: white !important;
+    border :2px solid #e54d42 !important;
+    border-left:5px solid #b82e24 !important;
+    border-top:5px solid #b82e24 !important;
   }
 }
 </style>

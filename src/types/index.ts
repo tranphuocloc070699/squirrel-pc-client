@@ -19,6 +19,18 @@ export interface IChannelInfo {
   url: string
 }
 
+export interface IAxiosProgressEvent{
+  showProgressBar: boolean,
+  downloadProgress: number,
+  total:string,
+    loaded:string
+}
+
+export interface ISidebarVideoItem{
+  video:IVideoItem,
+  progress?:IAxiosProgressEvent
+}
+
 export interface IVideoFromChannelResponse{
   videos: IVideoItem[]
   channel: IChannelInfo

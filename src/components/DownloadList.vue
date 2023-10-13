@@ -25,23 +25,11 @@ const youtubeStore= useYoutubeStore();
 const getAudios = computed(() => {
   
   const audios :IDownloadItem[] = []
-  const mediaResponse = youtubeStore.listDownload?.formats
-  if(mediaResponse){
-    // const sortedMedias = Object.values(mediaResponse).sort(
-    //   (a, b) => (a.filesize || 0) -( b.filesize || 0)
-    // )
-    // let minFileSizeMedia =sortedMedias.find((video) => video.video_ext === 'mp4')
-    // if(minFileSizeMedia){
-      
-    //   audios.push(minFileSizeMedia)
-    // }
-    for (const key in mediaResponse) {
-    const value =mediaResponse[key]
-    if (value.video_ext === 'mp4') {
-      audios.push(value)
-      break;
-    }
-  }
+
+  const mediaResponse = youtubeStore.listDownload?.formats.filter(item => item.video_ext!=='mp4').sort((a, b) => ( b.filesize || 0)- (a.filesize || 0))
+
+  if(mediaResponse && mediaResponse[0]){
+    audios.push(mediaResponse[0])
   }
   return audios
 })

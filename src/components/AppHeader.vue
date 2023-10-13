@@ -42,7 +42,7 @@ import { RouterLink, useRouter } from 'vue-router'
 import { useYoutubeStore } from '@/stores/youtube.store'
 import { onMounted, ref } from 'vue'
 import SidebarHeader from './SidebarHeader.vue';
-import type { IVideoItem } from '@/types';
+import type { ISidebarVideoItem } from '@/types';
 const router = useRouter()
 const youtubeStore = useYoutubeStore()
 
@@ -56,7 +56,7 @@ const handleBackToHome = () => {
 }
 
 onMounted(() =>{
- const savedVideos : IVideoItem[] = localStorage.getItem('savedVideos') ? JSON.parse(localStorage.getItem('savedVideos')!) : []
+ const savedVideos : ISidebarVideoItem[] = localStorage.getItem('savedVideos') ? JSON.parse(localStorage.getItem('savedVideos')!) : []
   youtubeStore.savedVideos = savedVideos
 })
 

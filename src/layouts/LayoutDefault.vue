@@ -4,7 +4,8 @@
       <AppHeader />
     </header>
     <main class="flex-grow">
-        <slot></slot>
+       <Searcher/>
+      <slot></slot>
         
     </main>
     <footer>
@@ -16,6 +17,7 @@
 <script setup lang="ts">
 import AppHeader from '../components/AppHeader.vue'
 import AppFooter from '../components/AppFooter.vue'
+import Searcher from '@/components/Searcher.vue';
 
 </script>
 

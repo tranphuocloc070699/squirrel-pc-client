@@ -1,5 +1,6 @@
 <template>
     <LayoutDefault>
+        
         <ChannelInfo :channel="youtubeStore.channelInfo" :loading="youtubeStore.searchVideoLoading"></ChannelInfo>
         <VideoList v-show="youtubeStore.searchVideoLoading || youtubeStore.searchVideos.length>0" :loading="youtubeStore.searchVideoLoading" title="VIDEO FROM CHANNEL" icon="/star.svg" :videos="youtubeStore.searchVideos"></VideoList>
     </LayoutDefault>

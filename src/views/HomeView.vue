@@ -1,6 +1,6 @@
 <template>
   <LayoutDefault>
-    <Searcher></Searcher>
+    
     <VideoList v-show="youtubeStore.searchVideoLoading || youtubeStore.searchVideos.length>0" :loading="youtubeStore.searchVideoLoading" title="SEARCH" icon="/search.svg" :videos="youtubeStore.searchVideos"></VideoList>
   </LayoutDefault>
 </template>
@@ -15,9 +15,7 @@ import { onMounted } from 'vue';
 const youtubeStore = useYoutubeStore()
 
 onMounted(() =>{
-  if(youtubeStore.searchVideos.length>0){
-    youtubeStore.searchVideos = []
-  }
+ 
 })  
 
 </script>
