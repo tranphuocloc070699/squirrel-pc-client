@@ -24,6 +24,11 @@ const router = createRouter({
       component: () => import('../views/ChannelView.vue')
     },
     {
+      path: '/feedback',
+      name: 'feedback',
+      component: () => import('../views/FeedbackView.vue')
+    },
+    {
       path: '/:catchAll(.*)',
       name: 'not-found',
       component: () => import('../views/NotFoundView.vue')

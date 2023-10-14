@@ -1,0 +1,38 @@
+[
+  {
+    "code": "US",
+    "name": "United States",
+    "logo":"🇺🇸"
+  },
+  {
+    "code": "GB",
+    "name": "United Kingdom",
+    "logo":"🇬🇧"
+  },
+  {
+    "code": "KR",
+    "name": "South Korea",
+    "logo":"🇰🇷"
+  },
+  {
+    "code": "JP",
+    "name": "Japan",
+    "logo":"🇯🇵"
+  },
+  {
+    "code": "RU",
+    "name": "Russia",
+    "logo":"🇷🇺"
+  },
+  {
+    "code": "FR",
+    "name": "France",
+    "logo":"🇫🇷"
+  },
+  {
+    "code": "VN",
+    "name": "Vietnam",
+    "logo":"🇻🇳"
+  }
+
+]

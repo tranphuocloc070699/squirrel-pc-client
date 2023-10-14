@@ -14,7 +14,7 @@
         <h3 class="ellipsis-line ml-2 leading-4">
         {{ data.video.title }}
       </h3>
-      <img @click="$emit('removeVideoFromStorage',props.data.video.id)" src="/src/assets/images/trash.svg" width="16" height="16" class="ml-2 cursor-pointer " />
+      <img v-if="!data.progress?.showProgressBar" @click="$emit('removeVideoFromStorage',props.data.video.id)" src="/src/assets/images/trash.svg" width="16" height="16" class="ml-2 cursor-pointer " />
       </div>
       <div v-if="data.progress">
         <div class="w-full bg-gray-200 rounded-full mx-2 mb-1 " v-show="data.progress.showProgressBar">

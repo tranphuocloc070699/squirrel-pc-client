@@ -11,8 +11,9 @@ export const useYoutubeStore = defineStore('youtube', () => {
   const searchVideoLoading = ref(false)
   const getListDownloadLoading = ref(false)
   const downloadMediaLoading = ref(false)
+  const listTrendingVideoLoading = ref(false)
 
-
+  const selectedCountry = ref('US');
   const searchVideos = ref<IVideoItem[]>([])
   const detailVideo = ref<IVideoItem>({
     id: '',
@@ -33,6 +34,7 @@ export const useYoutubeStore = defineStore('youtube', () => {
     subscribers: '',
     url: ''
   })
+  const trendingVideos = ref<IVideoItem[]>([])
   const listDownload = ref<ILinkDownloadResponse | null>(null)
 
   const searchByKeyword = async (payload: IParams) => {
@@ -117,19 +119,36 @@ export const useYoutubeStore = defineStore('youtube', () => {
       downloadMediaLoading.value = false
     }
   }
+  
+  const listTrendingVideo = async (payload: IParams) => {
+    listTrendingVideoLoading.value= true
+    try {
+      const response = await youtubeRepository?.listTrendingVideo(payload)
+      if (response?.data) trendingVideos.value = response?.data
+      return response?.data
+    } catch (error) {
+      logError(error, '[STORE] downloadMediaFile/listTrendingVideo')
+    } finally {
+      listTrendingVideoLoading.value = false
+    }
+  }
 
   return {
     searchVideoLoading,
     getListDownloadLoading,
     downloadMediaLoading,
+    listTrendingVideoLoading,
+    selectedCountry,
     searchVideos,
     listDownload,
     savedVideos,
     channelInfo,
     detailVideo,
+    trendingVideos,
     listVideoByChannelId,
     searchByKeyword,
     getListDownload,
-    downloadMediaFile
+    downloadMediaFile,
+    listTrendingVideo
   }
 })

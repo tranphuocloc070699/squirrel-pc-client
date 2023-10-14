@@ -38,12 +38,13 @@
         <img src="/src/assets/images/youtube.png" />
       </a>
       <img
+      @click="handleClick"
         v-show="!isAdded"
         ref="plusVideoToStorageRef"
         src="/src/assets/images/plus.svg"
         width="24"
         height="24"
-        class="border border-blue_739 rounded p-1 z-10"
+        class="border border-blue_739 rounded p-1 z-10 cursor-pointer"
       />
       <!-- <div v-if="showDownload" class="w-full">
         <p class="text-sm font-semibold text-slate-500">
@@ -90,7 +91,10 @@ const isAdded = computed(() => {
 })
 
 const handleClick = (event: MouseEvent) => {
+  console.log(event.target)
+  console.log(plusVideoToStorageRef.value)
   if (event.target === plusVideoToStorageRef.value) {
+
     handleAddToStorage()
   } 
   else if (event.target === channelNameRef.value) {

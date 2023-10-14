@@ -8,6 +8,13 @@ export interface IVideoItem {
   views: string
   publish_time: string
   download_counter?: number
+  country?:ICountry
+}
+
+export interface ICountry{
+  id : number,
+  name:string,
+  code:string
 }
 
 export interface IChannelInfo {

@@ -15,13 +15,26 @@ export default{
     getListDownload:(id : string) =>{
         return AxiosBackend.post<ILinkDownloadResponse>(`/youtube/video/download/list`,{id})
     },
+    // downloadMediaFile(payload : IParams,onProgress: (progressEvent: AxiosProgressEvent) => void){
+        
+    //     return AxiosBackend.get<Blob>(`/youtube/video/download`,{
+    //         params:payload,
+    //         timeout:0,
+    //         responseType:'blob',
+    //         onDownloadProgress: onProgress,
+    //     },)
+    // },
     downloadMediaFile(payload : IParams,onProgress: (progressEvent: AxiosProgressEvent) => void){
         
-        return AxiosBackend.get<Blob>(`/youtube/video/download`,{
-            params:payload,
+        return AxiosBackend.put<Blob>(`/youtube/video/download`,payload,{
             timeout:0,
             responseType:'blob',
             onDownloadProgress: onProgress,
-        },)
-    }
+        })
+    },
+    listTrendingVideo:(payload : IParams) =>{
+        return AxiosBackend.get<IVideoItem[]>(`/youtube/video/trending`,{
+            params:payload
+        })
+    },
 }
