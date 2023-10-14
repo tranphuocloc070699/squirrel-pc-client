@@ -40,14 +40,7 @@ interface ICountryJson {
 
 const youtubeStore = useYoutubeStore()
 const countries = ref<ICountryJson[]>(jsonFile);
-onMounted(() => {
-  // if (youtubeStore.trendingVideos.length === 0) {
-  //   const params: IParams = {
-  //     countryCode: 'VN'
-  //   }
-  //   youtubeStore.listTrendingVideo(params)
-  // }
-})
+
 watch(
   () => youtubeStore.selectedCountry,
   async (selectedCountry) => {
