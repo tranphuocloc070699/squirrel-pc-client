@@ -13,7 +13,7 @@ export const useYoutubeStore = defineStore('youtube', () => {
   const downloadMediaLoading = ref(false)
   const listTrendingVideoLoading = ref(false)
 
-  const selectedCountry = ref('US');
+  const selectedCountry = ref('GB');
   const searchVideos = ref<IVideoItem[]>([])
   const detailVideo = ref<IVideoItem>({
     id: '',

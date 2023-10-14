@@ -59,7 +59,7 @@ const mediaTitle = computed(() => {
 
 const downloadMedia = async () => {
   const url = props.download.url
-  const title = `${youtubeStore.searchVideos[0].title} - ${youtubeStore.searchVideos[0].channel_name}`
+  const title = `${youtubeStore.detailVideo.title} - ${youtubeStore.detailVideo.channel_name}`
   const params: IParams = {
     url,
     title

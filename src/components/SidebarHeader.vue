@@ -121,11 +121,11 @@ const types = reactive<IType[]>([
   {
     label: 'Video',
     value: 'video'
-  },
-  {
-    label: 'Audio',
-    value: 'audio'
   }
+  // {
+  //   label: 'Audio',
+  //   value: 'audio'
+  // }
 ])
 const isDownloading = ref(false);
 
