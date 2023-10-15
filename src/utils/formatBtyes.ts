@@ -16,3 +16,6 @@ export const formatBytes = (bytes: number) => {
     // return GB if less than a TB
     else return ` (${(bytes / gigaBytes).toFixed(decimal)} GB)`
   }
+
+
+  
