@@ -16,7 +16,7 @@ axios.interceptors.request.use(
   
 
 export const AxiosBackend = axios.create({
-    baseURL: import.meta.env.VITE_BASE_URL_BACKEND,
+    baseURL: import.meta.env.VITE_BASE_URL_PROXY,
     headers: {
         "Content-Type": "application/json",
         "Token":"Bearer helloworld"
