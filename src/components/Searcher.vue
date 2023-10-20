@@ -45,15 +45,20 @@ interface ISearch {
   keyword: string
   type: string
 }
-import { reactive } from 'vue'
+import { onMounted, reactive } from 'vue'
 import type { IParams } from '@/types';
 import {useRoute,useRouter} from 'vue-router'
+
 const searchData = reactive<ISearch>({
   keyword: '',
   type: 'video'
 })
 const route = useRoute();
 const router = useRouter();
+
+onMounted(async () =>{
+  
+})
 
 const  onSubmit = async () => {
   if (searchData.keyword.trim().length <= 1) {

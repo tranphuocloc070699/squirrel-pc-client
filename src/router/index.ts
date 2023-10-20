@@ -9,6 +9,16 @@ const router = createRouter({
       component: () => import('../views/HomeView.vue')
     },
     {
+      path: '/',
+      name: 'podcast',
+      component: () => import('../views/PodcastView.vue')
+    },
+    {
+      path: '/',
+      name: 'audio-book',
+      component: () => import('../views/AudioBookView.vue')
+    },
+    {
       path: '/about',
       name: 'about',
       component: () => import('../views/AboutView.vue')

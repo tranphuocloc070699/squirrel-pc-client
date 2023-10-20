@@ -23,9 +23,19 @@
               >Home</span
             >
           </li>
-          <li>
+          <!-- <li>
             <RouterLink to="/about" class="p-2 cursor-pointer hover:text-primary text-xl"
-              >About</RouterLink
+              >Download</RouterLink
+            >
+          </li> -->
+          <li>
+            <RouterLink to="/podcast" class="p-2 cursor-pointer hover:text-primary text-xl"
+              >Podcast</RouterLink
+            >
+          </li>
+          <li>
+            <RouterLink to="/audio-book" class="p-2 cursor-pointer hover:text-primary text-xl"
+              >AudioBooks</RouterLink
             >
           </li>
         </ul>
