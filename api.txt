@@ -1,4 +1,4 @@
 [STORE] - [YOUTUBE] - searchByKeyword:
-    - Searcher.vue (onSubmit)
+    - VideoSearching.vue (onSubmit)
     
 

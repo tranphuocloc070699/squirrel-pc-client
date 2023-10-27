@@ -35,17 +35,16 @@
 </template>
 
 <script setup lang="ts">
-import { useNotification } from '@kyvg/vue3-notification'
 import { useYoutubeStore } from '@/stores/youtube.store';
 
-const { notify } = useNotification()
 const youtubeStore = useYoutubeStore()
 
 interface ISearch {
   keyword: string
   type: string
 }
-import { onMounted, reactive } from 'vue'
+
+import {  reactive } from 'vue'
 import type { IParams } from '@/types';
 import {useRoute,useRouter} from 'vue-router'
 
@@ -56,9 +55,7 @@ const searchData = reactive<ISearch>({
 const route = useRoute();
 const router = useRouter();
 
-onMounted(async () =>{
-  
-})
+
 
 const  onSubmit = async () => {
   if (searchData.keyword.trim().length <= 1) {

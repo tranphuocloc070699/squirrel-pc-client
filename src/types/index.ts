@@ -39,8 +39,8 @@ export interface ISidebarVideoItem{
 }
 
 export interface IVideoFromChannelResponse{
-  videos: IVideoItem[]
-  channel: IChannelInfo
+  videos?: IVideoItem[]
+  channel?: IChannelInfo
 }
 
 export interface IVideoThumbnailItem {
@@ -70,4 +70,29 @@ export interface ILinkDownloadResponse {
 
 export interface IParams {
   [key: string]: string | number
+}
+
+export interface IShow{
+  id:string,
+  name:string,
+  thumbnails:IVideoThumbnailItem[],
+  description:string
+}
+
+export interface IPodcastItem{
+  id: string;
+    name: string;
+    thumbnails: IVideoThumbnailItem[];
+    description: string;
+    release_date: string;
+    audio_url: string;
+    duration: number;
+    audio_preview_url: string;
+    keywords: string;
+    show?:IShow
+}
+
+export interface IShowInfoAndEpisodes{
+  podcasts:IPodcastItem[],
+  show:IShow
 }

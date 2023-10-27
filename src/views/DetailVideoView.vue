@@ -5,7 +5,8 @@
     >
       <VideoItemSkeleton v-show="youtubeStore.searchVideoLoading"/>
       <VideoItem  v-if="youtubeStore.detailVideo.id.length>0" class="w-full md:max-w-xs" :video="youtubeStore.detailVideo" :show-download="true"></VideoItem>
-      <DownloadList class="md:ml-6 flex-grow"/>
+      <DownloadList v-show="!youtubeStore.getListDownloadLoading && youtubeStore.listDownload" class="md:ml-6 flex-grow"/>
+      <DownloadItemSkeleton v-show="youtubeStore.getListDownloadLoading && !youtubeStore.listDownload" class="md:ml-6 flex-grow"/>
     </div>
   </LayoutDefault>
 </template>
@@ -19,7 +20,7 @@ import { useRoute } from 'vue-router'
 import {  watch } from 'vue'
 import { useYoutubeStore } from '@/stores/youtube.store'
 import  VideoItemSkeleton from '@/components/Loading/VideoItemSkeleton.vue'
-
+import DownloadItemSkeleton from '@/components/Loading/DownloadItemSkeleton.vue'
 const route = useRoute()
 const youtubeStore = useYoutubeStore()
 watch(

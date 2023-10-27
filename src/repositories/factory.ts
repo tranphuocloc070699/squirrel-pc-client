@@ -1,21 +1,10 @@
-import YoutubeRepository from './repository/youtube.repository';
+import YoutubeRepository from './repository/youtube.repository'
+import PodcastRepository from './repository/podcast.repository'
 
 
-const repositories  = {
-    'youtube': YoutubeRepository
-}
-
-const RepositoryFactory= {
-    get : (name: string) => {
-        switch (name) {
-            case 'youtube':
-                return repositories.youtube
-            default:
-                break;
-        }
-    }
-   
+const RepositoryFactory = {
+  youtube:YoutubeRepository,
+  podcast:PodcastRepository,
 }
 
 export default RepositoryFactory
-

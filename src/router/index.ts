@@ -9,12 +9,22 @@ const router = createRouter({
       component: () => import('../views/HomeView.vue')
     },
     {
-      path: '/',
+      path: '/podcast',
       name: 'podcast',
       component: () => import('../views/PodcastView.vue')
     },
     {
-      path: '/',
+      path: '/podcast/:id',
+      name: 'podcast-detail',
+      component: () => import('../views/DetailPodcastView.vue')
+    },
+    {
+      path: '/show/:id',
+      name: 'show-detail',
+      component: () => import('../views/ShowView.vue')
+    },
+    {
+      path: '/audio-book',
       name: 'audio-book',
       component: () => import('../views/AudioBookView.vue')
     },

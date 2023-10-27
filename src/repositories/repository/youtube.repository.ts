@@ -9,6 +9,9 @@ export default{
     listVideoByChannelId:(id : string) =>{
         return AxiosBackend.post<IVideoFromChannelResponse>(`/youtube/channel/videos`,{id})
     },
+    getChannelInfoByChannelId:(id : string) =>{
+        return AxiosBackend.post<IVideoFromChannelResponse>(`/youtube/channel/info`,{id})
+    },
     getListDownload:(id : string) =>{
         return AxiosBackend.post<ILinkDownloadResponse>(`/youtube/video/download/list`,{id})
     },

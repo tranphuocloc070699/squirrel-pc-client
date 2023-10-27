@@ -3,8 +3,9 @@
         <h3 class="mx-auto max-w-7xl w-full flex items-center px-4">
       <img :src="`/src/assets/images/star.svg`" />
       <span class="ml-2 mt-1 font-semibold text-xl">CHANNEL</span>
+   
     </h3>
-        <div v-if="!loading && channel.channelId.length>0"
+        <div v-if="!loading && channel.channelId.length>0 && errorMessage.length===0"
             class="mt-8 mx-4 shadow rounded-lg p-4 inline-block"
             >
             <div class="flex  items-start ">
@@ -16,6 +17,11 @@
                 </div>
                 <a :href="props.channel.url" target="_blank" class="mt-3 font-bold max-w-[120px] text-base text-primary">YOUTUBE LINK</a>
             </div>
+            </div>
+        </div>
+        <div v-show="!loading && errorMessage.length>0">
+            <div  class="mt-8 mx-4 shadow rounded-lg p-4 inline-block">
+                <h4 class="font-semibold text-base text-slate-500">{{ errorMessage }}</h4>
             </div>
         </div>
     
@@ -36,6 +42,10 @@ const props = defineProps({
   loading: {
     type: Boolean,
     default: false
+  },
+  errorMessage:{
+    type: String,
+    default:''
   }
 })
 

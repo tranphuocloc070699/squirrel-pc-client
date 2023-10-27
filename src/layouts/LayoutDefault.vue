@@ -3,8 +3,9 @@
     <header>
       <AppHeader />
     </header>
-    <main class="flex-grow">
-       <Searcher/>
+    <main class="flex-grow max-w-full">
+       <VideoSearching v-if="type==='youtube'"/>
+       <PodcastSearching v-if="type==='podcast'"/>
       <slot></slot>
         
     </main>
@@ -17,7 +18,16 @@
 <script setup lang="ts">
 import AppHeader from '../components/AppHeader.vue'
 import AppFooter from '../components/AppFooter.vue'
-import Searcher from '@/components/Searcher.vue';
+import VideoSearching from '@/components/VideoSearching.vue';
+import PodcastSearching from '@/components/PodcastSearching.vue';
+
+
+defineProps({
+  type: {
+    type: String,
+    default: 'youtube',
+  },
+})
 
 </script>
 
