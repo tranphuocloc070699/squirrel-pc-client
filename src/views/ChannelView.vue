@@ -1,10 +1,10 @@
 <template>
   <LayoutDefault>
-    <ChannelInfo
+    <VideoChannelInfo
       :channel="youtubeStore.channelInfo"
       :loading="youtubeStore.channelInfoLoading"
       :error-message="youtubeStore.channelInfoErrorMessage"
-    ></ChannelInfo>
+    ></VideoChannelInfo>
     <VideoList
       
       :loading="youtubeStore.searchVideoLoading"
@@ -20,9 +20,9 @@
 import { watch } from 'vue'
 import { useRoute } from 'vue-router'
 import { useYoutubeStore } from '@/stores/youtube.store'
-import VideoList from '@/components/VideoList.vue'
+import VideoList from '@/components/Video/VideoList.vue'
 import LayoutDefault from '@/layouts/LayoutDefault.vue'
-import ChannelInfo from '@/components/ChannelInfo.vue'
+import VideoChannelInfo from '@/components/Video/VideoChannelInfo.vue'
 
 const route = useRoute()
 const youtubeStore = useYoutubeStore()

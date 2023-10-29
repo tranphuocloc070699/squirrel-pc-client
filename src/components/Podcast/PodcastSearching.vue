@@ -53,15 +53,10 @@
   const route = useRoute();
   const router = useRouter();
   
-  
-  
   const  onSubmit = async () => {
-  
-  
     if(route.name!=='podcast'){
       router.push({path:'/podcast'})
     }
-  
     const params : IParams = {
       keyword:searchData.keyword.trim(),
       size: '30',

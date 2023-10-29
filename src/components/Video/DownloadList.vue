@@ -16,7 +16,7 @@
 <script setup lang="ts">
 import { computed, onMounted } from 'vue'
 import DownloadItem from './DownloadItem.vue'
-import type { IDownloadItem } from '../types/index'
+import type { IDownloadItem } from '../../types/index'
 import { useYoutubeStore } from '@/stores/youtube.store';
 
 const youtubeStore= useYoutubeStore();

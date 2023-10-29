@@ -2,13 +2,13 @@
   <LayoutDefault>
     
     <VideoList v-show="youtubeStore.searchVideoLoading || youtubeStore.searchVideos.length>0" :loading="youtubeStore.searchVideoLoading" title="SEARCH" icon="/search.svg" :videos="youtubeStore.searchVideos"></VideoList>
-    <TrendingVideo></TrendingVideo>
+    <VideoTrending></VideoTrending>
   </LayoutDefault>
 </template>
 
 <script setup lang="ts">
-import  TrendingVideo from '@/components/TrendingVideo.vue';
-import VideoList from '@/components/VideoList.vue';
+import  VideoTrending from '@/components/Video/VideoTrending.vue';
+import VideoList from '@/components/Video/VideoList.vue';
 import LayoutDefault from '@/layouts/LayoutDefault.vue'
 import { useYoutubeStore } from '@/stores/youtube.store';
 

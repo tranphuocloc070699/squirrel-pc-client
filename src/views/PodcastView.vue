@@ -7,14 +7,14 @@
       icon="/search.svg"
       :podcasts="podcastStore.searchPodcasts.data"
     ></PodcastList>
-    <TrendingPodcast></TrendingPodcast>
+    <PodcastTrending></PodcastTrending>
   </LayoutDefault>
 </template>
 
 <script setup lang="ts">
 import LayoutDefault from '@/layouts/LayoutDefault.vue'
-import TrendingPodcast from '@/components/TrendingPodcast.vue'
-import PodcastList from '@/components/PodcastList.vue'
+import PodcastTrending from '@/components/Podcast/PodcastTrending.vue'
+import PodcastList from '@/components/Podcast/PodcastList.vue'
 import { usePodcastStore } from '@/stores/podcast.store'
 
 const podcastStore = usePodcastStore()

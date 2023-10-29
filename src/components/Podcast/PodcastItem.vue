@@ -45,7 +45,7 @@
   
   <script setup lang="ts">
   import {  useRouter,RouterLink} from 'vue-router'
-  import type { IPodcastItem, ISidebarVideoItem } from '../types/index'
+  import type { IPodcastItem, ISidebarVideoItem } from '../../types/index'
   import { computed, ref } from 'vue'
   import { useYoutubeStore } from '@/stores/youtube.store'
   import { useNotification } from '@kyvg/vue3-notification'

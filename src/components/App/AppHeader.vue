@@ -33,11 +33,11 @@
               >Podcast</RouterLink
             >
           </li>
-          <!-- <li>
-            <RouterLink to="/audio-book" class="p-2 cursor-pointer hover:text-primary text-xl"
+          <li>
+            <RouterLink to="/book" class="p-2 cursor-pointer hover:text-primary text-xl"
               >AudioBooks</RouterLink
             >
-          </li> -->
+          </li>
         </ul>
       </div>
     </div>
@@ -51,7 +51,7 @@ import { RouterLink, useRouter } from 'vue-router'
 
 import { useYoutubeStore } from '@/stores/youtube.store'
 import { onMounted, ref } from 'vue'
-import SidebarHeader from './SidebarHeader.vue';
+import SidebarHeader from '../Sidebar/SidebarHeader.vue';
 import type { ISidebarVideoItem } from '@/types';
 const router = useRouter()
 const youtubeStore = useYoutubeStore()

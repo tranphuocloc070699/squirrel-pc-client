@@ -58,7 +58,7 @@
 
 <script setup lang="ts">
 import { RouterLink, useRouter } from 'vue-router'
-import type { ISidebarVideoItem, IVideoItem } from '../types/index'
+import type { ISidebarVideoItem, IVideoItem } from '../../types/index'
 import { computed, ref } from 'vue'
 import { useYoutubeStore } from '@/stores/youtube.store'
 import { useNotification } from '@kyvg/vue3-notification'

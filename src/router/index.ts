@@ -24,9 +24,9 @@ const router = createRouter({
       component: () => import('../views/ShowView.vue')
     },
     {
-      path: '/audio-book',
-      name: 'audio-book',
-      component: () => import('../views/AudioBookView.vue')
+      path: '/book',
+      name: 'book',
+      component: () => import('../views/BookView.vue')
     },
     {
       path: '/about',

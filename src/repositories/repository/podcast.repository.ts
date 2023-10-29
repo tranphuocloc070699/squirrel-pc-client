@@ -10,6 +10,7 @@ export default{
     },
     getShowInfoAndEpisodes(showId : string){
         return AxiosBackend.get<IShowInfoAndEpisodes>(`/podcast/show/${showId}`)
-    }
+    },
+    
   
 }
