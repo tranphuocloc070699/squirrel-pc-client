@@ -114,7 +114,7 @@ export interface IBook {
 
 
 export interface IUpsertBookRequest {
-  id : number;
+  id? : number;
   name: string
   description: string
   thumbnail: string
@@ -129,13 +129,14 @@ export interface IUpsertBookRequest {
 }
 
 export interface IAuthor {
-   id : number;
+   id? : number;
    name :string;
    description : string;
+   thumbnail : string;
 }
 
 export interface ICategory {
-  id : number;
+  id ?: number;
   name : string
 }
 
@@ -145,5 +146,11 @@ export interface IUploadFile {
   pdf_url :string;
   audio_url :string;
   saved : boolean;
+  lang:string
+}
+
+export interface IFindBookByAuthorResponse {
+  author:IAuthor;
+  bookList:IBook[]
 }
 

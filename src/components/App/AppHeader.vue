@@ -20,7 +20,7 @@
         >
           <li>
             <span @click="handleBackToHome" class="p-2 cursor-pointer hover:text-primary text-xl"
-              >Home</span
+              >Youtube</span
             >
           </li>
           <!-- <li>
