@@ -26,7 +26,7 @@
 </template>
 
 <script setup lang="ts">
-import VideoList from '@/components/VideoList.vue'
+import VideoList from '@/components/Video/VideoList.vue'
 import { useYoutubeStore } from '@/stores/youtube.store'
 import type { IParams } from '@/types'
 import { onMounted, ref, watch } from 'vue'

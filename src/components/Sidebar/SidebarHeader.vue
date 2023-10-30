@@ -55,7 +55,7 @@
         </transition-group>
       </div>
     </div>
-    <Modal :show-modal="modal.show" :title="modal.title" @close="modal.show = false">
+    <AppModal :show-modal="modal.show" :title="modal.title" @close="modal.show = false">
       <div class="mt-8">
         <h3 class="font-semibold text-blue_557 dark:text-white">Types</h3>
         <ul
@@ -89,7 +89,7 @@
           >Download</span
         >
       </div>
-    </Modal>
+    </AppModal>
   </div>
 </template>
 
@@ -97,7 +97,7 @@
 import type { IDownloadItem, IParams, ISidebarVideoItem } from '@/types'
 import SidebarVideoItem from './SidebarVideoItem.vue'
 import { useYoutubeStore } from '@/stores/youtube.store'
-import Modal from './Modal.vue'
+import AppModal from '../App/AppModal.vue'
 import { reactive, ref } from 'vue'
 import { logError } from '@/utils/logError'
 import { formatBytes } from '@/utils/formatBtyes'

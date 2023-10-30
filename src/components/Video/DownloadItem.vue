@@ -21,9 +21,9 @@
 </template>
 
 <script setup lang="ts">
-import type { IDownloadItem, IParams } from '../types/index'
+import type { IDownloadItem, IParams } from '../../types/index'
 import { useYoutubeStore } from '@/stores/youtube.store'
-import ButtonLoading from './Loading/ButtonLoading.vue'
+import ButtonLoading from '../Loading/ButtonLoading.vue'
 import { computed, reactive, ref } from 'vue'
 import { logError } from '@/utils/logError'
 import type { AxiosProgressEvent } from 'axios'

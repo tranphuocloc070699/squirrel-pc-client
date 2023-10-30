@@ -6,6 +6,7 @@
     <main class="flex-grow max-w-full">
        <VideoSearching v-if="type==='youtube'"/>
        <PodcastSearching v-if="type==='podcast'"/>
+       <BookSearching v-if="type==='book'"/>
       <slot></slot>
         
     </main>
@@ -16,10 +17,11 @@
   </template>
 
 <script setup lang="ts">
-import AppHeader from '../components/AppHeader.vue'
-import AppFooter from '../components/AppFooter.vue'
-import VideoSearching from '@/components/VideoSearching.vue';
-import PodcastSearching from '@/components/PodcastSearching.vue';
+import AppHeader from '../components/App/AppHeader.vue'
+import AppFooter from '../components/App/AppFooter.vue'
+import VideoSearching from '@/components/Video/VideoSearching.vue';
+import PodcastSearching from '@/components/Podcast/PodcastSearching.vue';
+import  BookSearching from '@/components/Book/BookSearching.vue';
 
 
 defineProps({

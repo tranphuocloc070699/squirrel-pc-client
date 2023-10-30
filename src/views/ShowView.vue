@@ -30,7 +30,7 @@ import type { IShowInfoAndEpisodes } from '@/types'
 import { computed, onMounted, ref } from 'vue'
 import { usePodcastStore } from '@/stores/podcast.store'
 import { useRoute } from 'vue-router'
-import PodcastList from '@/components/PodcastList.vue'
+import PodcastList from '@/components/Podcast/PodcastList.vue'
 import ShowLoading from '@/components/Loading/ShowLoading.vue'
 const podcastStore = usePodcastStore()
 const route = useRoute()

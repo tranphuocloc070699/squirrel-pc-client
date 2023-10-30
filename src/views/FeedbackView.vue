@@ -14,7 +14,7 @@
 </template>
 
 <script setup lang="ts">
-import FeedbackItem from '@/components/FeedbackItem.vue';
+import FeedbackItem from '@/components/Feedback/FeedbackItem.vue';
 import  LayoutDefault from '@/layouts/LayoutDefault.vue';
 
 

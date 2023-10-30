@@ -36,7 +36,7 @@
 </template>
 
 <script setup lang="ts">
-import ReplyItem from '@/components/ReplyItem.vue';
+import ReplyItem from '@/components/Feedback/ReplyItem.vue';
 
 </script>
 

@@ -69,7 +69,7 @@ export interface ILinkDownloadResponse {
 }
 
 export interface IParams {
-  [key: string]: string | number
+  [key: string]: any
 }
 
 export interface IShow {

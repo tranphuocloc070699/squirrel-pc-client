@@ -12,8 +12,8 @@
 </template>
 
 <script setup lang="ts">
-import DownloadList from '@/components/DownloadList.vue'
-import VideoItem from '@/components/VideoItem.vue'
+import DownloadList from '@/components/Video/DownloadList.vue'
+import VideoItem from '@/components/Video/VideoItem.vue'
 import LayoutDefault from '@/layouts/LayoutDefault.vue'
 import type { IParams } from '@/types'
 import { useRoute } from 'vue-router'
