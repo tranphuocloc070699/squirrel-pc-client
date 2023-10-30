@@ -44,6 +44,11 @@ const router = createRouter({
       component: () => import('../views/ChannelView.vue')
     },
     {
+      path: '/book/:id',
+      name: 'book-detail',
+      component: () => import('../views/DetailBookView.vue')
+    },
+    {
       path: '/feedback',
       name: 'feedback',
       component: () => import('../views/FeedbackView.vue')

@@ -98,7 +98,7 @@ export interface IShowInfoAndEpisodes {
 }
 
 export interface IBook {
-  id? : number;
+  id : number;
   name: string
   description: string
   thumbnail: string
@@ -113,14 +113,29 @@ export interface IBook {
 }
 
 
+export interface IUpsertBookRequest {
+  id : number;
+  name: string
+  description: string
+  thumbnail: string
+  audio_url: string
+  pdf_url: string
+  created_at: Date
+  downloaded: number
+  published_year: number
+  country_code: string
+  category_id: number
+  author_id: number
+}
+
 export interface IAuthor {
-   id? : number;
+   id : number;
    name :string;
    description : string;
 }
 
 export interface ICategory {
-  id? : number;
+  id : number;
   name : string
 }
 
@@ -131,3 +146,4 @@ export interface IUploadFile {
   audio_url :string;
   saved : boolean;
 }
+

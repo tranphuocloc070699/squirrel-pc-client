@@ -70,30 +70,30 @@ const handleProgress = (progressEvent: AxiosProgressEvent) => {
 
 const handleFileChange = (event : any) =>{
 
-  const params: IParams = {
-    page_array:'1,2,3,4',
-    file:  event.target?.files[0]
-  }
+  // const params: IParams = {
+  //   page_array:'1,2,3,4',
+  //   file:  event.target?.files[0]
+  // }
 
-  bookStore
-    .uploadFile(params, handleProgress)
-    .then((response) => {
-      if (response) {
-        const blob = new Blob([response],{ type: 'audio/mpeg' })
-        const url = window.URL.createObjectURL(blob)
-        const a = document.createElement('a')
-        a.href = url
-        a.download = 'Hello' 
-        a.style.display = 'none'
-        a.target = '_blank'
-        document.body.appendChild(a)
-        a.click()
-        window.URL.revokeObjectURL(url)
-      }
-    })
-    .catch((error) => {
-      logError(error, '[Browser BookSearching/uploadFile]')
-    })
+  // bookStore
+  //   .uploadPdfFile(params, handleProgress)
+  //   .then((response) => {
+  //     if (response) {
+  //       const blob = new Blob([response],{ type: 'audio/mpeg' })
+  //       const url = window.URL.createObjectURL(blob)
+  //       const a = document.createElement('a')
+  //       a.href = url
+  //       a.download = 'Hello' 
+  //       a.style.display = 'none'
+  //       a.target = '_blank'
+  //       document.body.appendChild(a)
+  //       a.click()
+  //       window.URL.revokeObjectURL(url)
+  //     }
+  //   })
+  //   .catch((error) => {
+  //     logError(error, '[Browser BookSearching/uploadFile]')
+  //   })
 }
 </script>
 
