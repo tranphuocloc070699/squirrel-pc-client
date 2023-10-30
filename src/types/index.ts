@@ -8,13 +8,13 @@ export interface IVideoItem {
   views: string
   publish_time: string
   download_counter?: number
-  country?:ICountry
+  country?: ICountry
 }
 
-export interface ICountry{
-  id : number,
-  name:string,
-  code:string
+export interface ICountry {
+  id: number
+  name: string
+  code: string
 }
 
 export interface IChannelInfo {
@@ -26,19 +26,19 @@ export interface IChannelInfo {
   url: string
 }
 
-export interface IAxiosProgressEvent{
-  showProgressBar: boolean,
-  downloadProgress: number,
-  total:string,
-    loaded:string
+export interface IAxiosProgressEvent {
+  showProgressBar: boolean
+  downloadProgress: number
+  total: string
+  loaded: string
 }
 
-export interface ISidebarVideoItem{
-  video:IVideoItem,
-  progress?:IAxiosProgressEvent
+export interface ISidebarVideoItem {
+  video: IVideoItem
+  progress?: IAxiosProgressEvent
 }
 
-export interface IVideoFromChannelResponse{
+export interface IVideoFromChannelResponse {
   videos?: IVideoItem[]
   channel?: IChannelInfo
 }
@@ -72,27 +72,62 @@ export interface IParams {
   [key: string]: string | number
 }
 
-export interface IShow{
-  id:string,
-  name:string,
-  thumbnails:IVideoThumbnailItem[],
-  description:string
+export interface IShow {
+  id: string
+  name: string
+  thumbnails: IVideoThumbnailItem[]
+  description: string
 }
 
-export interface IPodcastItem{
-  id: string;
-    name: string;
-    thumbnails: IVideoThumbnailItem[];
-    description: string;
-    release_date: string;
-    audio_url: string;
-    duration: number;
-    audio_preview_url: string;
-    keywords: string;
-    show?:IShow
+export interface IPodcastItem {
+  id: string
+  name: string
+  thumbnails: IVideoThumbnailItem[]
+  description: string
+  release_date: string
+  audio_url: string
+  duration: number
+  audio_preview_url: string
+  keywords: string
+  show?: IShow
 }
 
-export interface IShowInfoAndEpisodes{
-  podcasts:IPodcastItem[],
-  show:IShow
+export interface IShowInfoAndEpisodes {
+  podcasts: IPodcastItem[]
+  show: IShow
+}
+
+export interface IBook {
+  id? : number;
+  name: string
+  description: string
+  thumbnail: string
+  audio_url: string
+  pdf_url: string
+  created_at: Date
+  downloaded: number
+  published_year: number
+  country_code: string
+  category: ICategory
+  author: IAuthor
+}
+
+
+export interface IAuthor {
+   id? : number;
+   name :string;
+   description : string;
+}
+
+export interface ICategory {
+  id? : number;
+  name : string
+}
+
+export interface IUploadFile {
+  id? : number;
+  name :string;
+  pdf_url :string;
+  audio_url :string;
+  saved : boolean;
 }
