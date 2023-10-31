@@ -1,11 +1,13 @@
 <template>
   <div class="max-w-5xl w-full mx-auto mt-6">
-    <h2 class="font-semibold mt-4 my-2">Categories</h2>
-    <div class="text-end">
+    <div class="flex items-center justify-between">
+      <h2 class="font-semibold mt-4 my-2">Categories</h2>
+   
         <button class="rounded-3xl px-2 py-1 text-xs text-white bg-red-600" @click="openModal('create')">
       NEW CATEGORY
     </button>
     </div>
+    
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
       <table class="w-full text-sm text-left text-gray-500">
         <thead class="text-xs text-gray-700 uppercase bg-gray-50">
@@ -54,13 +56,16 @@
       <div v-else-if="modal.type === 'delete'">
         <p>Are you sure you want to delete this category?</p>
     </div>
-      </div>
-
-      <div class="text-end mt-20">
+    <div class="text-end mt-20">
         <button class="bg-primary px-2 py-1 rounded-sm text-white font-semibold text-xs uppercase" @click="handleSubmit">
             {{ modal.type }}
         </button>
       </div>
+
+    <AdminSimpleModalLoading v-show="loading"/>
+      </div>
+
+     
     </AppModal>
    
   </div>
@@ -71,7 +76,7 @@ import type { ICategory } from '@/types'
 import { reactive, ref } from 'vue'
 import AppModal from '../App/AppModal.vue'
 import { useAdminStore  } from '@/stores/admin.store';
-
+import AdminSimpleModalLoading from '../Loading/AdminSimpleModalLoading.vue';
 const adminStore = useAdminStore();
 
 const props = defineProps({

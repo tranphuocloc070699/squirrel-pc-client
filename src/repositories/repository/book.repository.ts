@@ -29,8 +29,12 @@ export default{
             }
         })
     },
-    findById(id : number){
-        return AxiosBackend.get<IBook>(`/book/${id}`)
+    findById(id : number,category_id : number){
+        return AxiosBackend.get<IBook>(`/book/book/${id}`,{
+            params:{
+                category_id
+            }
+        })
     },
     findByNamesContaining(payload : IParams){
         return AxiosBackend.post<IBook[]>(`/book/`,payload)

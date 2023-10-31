@@ -28,13 +28,13 @@
             <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
               {{ item.id }}
             </th>
-            <td class="px-6 py-4">
+            <td class="px-6 py-4 font-medium text-black">
               {{ item.name }}
             </td>
-            <td class="px-6 py-4 text-orange-600">
+            <td class="px-6 py-4 ">
               <img :src="item.thumbnail" width="32" height="32" class="w-8 h-8" />
             </td>
-            <td class="px-6 py-4 text-blue-600">
+            <td class="px-6 py-4 ">
               {{ item.description }}
             </td>
 
@@ -55,7 +55,7 @@
       </table>
     </div>
     <AppModal :show-modal="modal.show" :title="modal.title" @close="modal.show = false">
-      <div class="w-[400px] mt-8">
+      <div class="w-[400px] mt-8 relative">
         <div v-if="modal.type === 'create'">
         <input class="mt-4 px-2 py-1 rounded-md outline-none border border-slate-400" type="text" v-model="data.create.name" placeholder="Author Name">
         <input class="mt-4 px-2 py-1 rounded-md outline-none border border-slate-400" type="text" v-model="data.create.description" placeholder="Author Desc">
@@ -76,13 +76,16 @@
       <div v-else-if="modal.type === 'delete'">
         <p>Are you sure you want to delete this author?</p>
     </div>
-      </div>
-
-      <div class="text-end mt-20">
+   
+    <div class="text-end mt-20">
         <button class="bg-primary px-2 py-1 rounded-sm text-white font-semibold text-xs uppercase" @click="handleSubmit">
             {{ modal.type }}
         </button>
       </div>
+     <AdminSimpleModalLoading v-show="loading"/>
+      </div>
+
+     
     </AppModal>
   </div>
 </template>
@@ -92,7 +95,7 @@ import type { IAuthor, IParams } from '@/types'
 import { reactive, ref } from 'vue'
 import AppModal from '../App/AppModal.vue'
 import { useAdminStore } from '@/stores/admin.store'
-
+import AdminSimpleModalLoading from '../Loading/AdminSimpleModalLoading.vue'
 const adminStore = useAdminStore()
 
 const props = defineProps({

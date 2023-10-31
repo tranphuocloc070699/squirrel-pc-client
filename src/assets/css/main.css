@@ -28,6 +28,12 @@
 .grid-auto-fill{
   grid-template-columns: repeat(auto-fill,minmax(286px,1fr));
 }
+.ellipsis-line-1 {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
 .ellipsis-line-2 {
   display: -webkit-box;
   -webkit-line-clamp: 2;

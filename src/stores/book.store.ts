@@ -4,6 +4,7 @@ import { logError } from '@/utils/logError'
 import type { AxiosProgressEvent } from 'axios'
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
+import { number } from 'yup'
 
 interface IBookList {
   loading: boolean
@@ -27,7 +28,7 @@ const bookDetailLoading = ref(false)
 
 
 
-const selectedCountry = ref('vi')
+const selectedCountry = ref('en')
 
 const allBook = ref<IBookList>({
   loading: false,
@@ -104,10 +105,10 @@ export const useBookStore = defineStore('book', () => {
     }
   }
 
-  const findById = async (id : number) => {
+  const findById = async (id : number,category_id : number) => {
     bookDetailLoading.value = true
     try {
-      const response = await bookRepository?.findById(id)
+      const response = await bookRepository?.findById(id,category_id)
       if(response?.data){
 
         return response.data
@@ -166,7 +167,7 @@ export const useBookStore = defineStore('book', () => {
       }
       const response = await bookRepository?.findByAuthorId(payload)
       if(response?.data){
-        listBookFinding.value.data = response.data
+        listBookFinding.value.data = response.data.bookList
         return response.data
       }
     } catch (error) {

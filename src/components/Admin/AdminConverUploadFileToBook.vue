@@ -3,7 +3,7 @@
     <span
       @click="modal.show = true"
       class="font-medium text-blue-600 hover:underline mr-8 cursor-pointer"
-      >Upload</span
+      >Convert</span
     >
     <AppModal
       class="overflow-y-auto h-[500px]"
@@ -12,17 +12,18 @@
       @close="modal.show = false"
       v-show="modal.show"
     >
+     <div class="relative">
       <input
         class="w-full px-2 py-1 rounded-md outline-none border border-slate-400"
         type="text"
         v-model="book.name"
-        placeholder="Author Name"
+        placeholder="Book Name"
       />
       <input
         class="mt-4 w-full px-2 py-1 rounded-md outline-none border border-slate-400"
         type="text"
         v-model="book.description"
-        placeholder="Author Desc"
+        placeholder="Book Desc"
       />
       <input
         class="mt-4 w-full px-2 py-1 rounded-md outline-none border border-slate-400"
@@ -77,6 +78,8 @@
           Submit
         </button>
       </div>
+      <AdminSimpleModalLoading v-show="loading"/>
+     </div>
     </AppModal>
   </div>
 </template>
@@ -87,6 +90,7 @@ import AppModal from '../App/AppModal.vue'
 import type { IParams, IUploadFile, IUpsertBookRequest } from '@/types'
 import { useBookStore } from '@/stores/book.store'
 import { useAdminStore } from '@/stores/admin.store'
+import AdminSimpleModalLoading from '../Loading/AdminSimpleModalLoading.vue'
 
 const adminStore = useAdminStore()
 const bookStore = useBookStore()
@@ -94,6 +98,10 @@ const props = defineProps({
   data: {
     type: Object as () => IUploadFile,
     required: true
+  },
+  loading:{
+    type:Boolean,
+    default:false
   }
 })
 
@@ -107,10 +115,11 @@ const book = ref({
   category_id: 0,
   author_id: 0,
   audio_url: props.data.audio_url,
-  pdf_url: props.data.pdf_url
+  pdf_url: props.data.pdf_url,
+  file_upload_id:props.data.id
 })
 
-const emit = defineEmits(['confirm'])
+
 const modal = reactive({
   show: false,
   title: `CONVERT UPLOAD FILE [${props.data.id}] TO BOOK`
@@ -138,7 +147,8 @@ const handleSubmit = async () => {
     published_year: book.value.published_year,
     country_code: book.value.country_code,
     category_id: book.value.category_id,
-    author_id: book.value.author_id
+    author_id: book.value.author_id,
+    file_upload_id:book.value.file_upload_id!
   }
   console.log({request})
 

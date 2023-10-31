@@ -123,9 +123,11 @@ export interface IUpsertBookRequest {
   created_at: Date
   downloaded: number
   published_year: number
+
   country_code: string
   category_id: number
   author_id: number
+  file_upload_id?: number
 }
 
 export interface IAuthor {

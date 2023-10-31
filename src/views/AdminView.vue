@@ -3,9 +3,9 @@
         <LayoutDefault type="admin">
             <AdminTabs :type="tabSelected" @change="num  => tabSelected=num"/>
                 <AdminUploadFileList v-show="tabSelected==0" :list="adminStore.uploadFiles" :loading="adminStore.loading"/>
-                <AdminBookList v-show="tabSelected==1" :list="bookStore.allBook.data" :loading="bookStore.allBook.loading"/>
-                <AdminCategoryList v-show="tabSelected==2" :list="bookStore.categoryList.data" :loading="bookStore.categoryList.loading"/>
-                <AdminAuthorList v-show="tabSelected==3" :list="bookStore.authorList.data" :loading="bookStore.authorList.loading"/>
+                <AdminBookList v-show="tabSelected==1" :list="bookStore.allBook.data" :loading="adminStore.loading"/>
+                <AdminCategoryList v-show="tabSelected==2" :list="bookStore.categoryList.data" :loading="adminStore.loading"/>
+                <AdminAuthorList v-show="tabSelected==3" :list="bookStore.authorList.data" :loading="adminStore.loading"/>
         </LayoutDefault>
     </div>
 </template>

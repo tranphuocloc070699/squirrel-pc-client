@@ -31,13 +31,13 @@
               <img :src="item.thumbnail" width="32" height="32" class="w-8 h-8" />
             </td>
 
-            <td class="px-6 py-4 text-blue-600">
+            <td class="px-6 py-4 ">
               {{ item.published_year }}
             </td>
             <td class="px-6 py-4 text-blue-600">
               {{ item.downloaded }}
             </td>
-            <td class="px-6 py-4 text-blue-600">
+            <td class="px-6 py-4 ">
               {{ item.created_at }}
             </td>
 

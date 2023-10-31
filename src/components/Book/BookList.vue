@@ -37,7 +37,7 @@
 <script setup lang="ts">
 import type { IBook } from '@/types';
 import  BookItem from './BookItem.vue';
-
+import VideoItemSkeleton from '@/components/Loading/VideoItemSkeleton.vue'
 
 const props = defineProps({
   books: {

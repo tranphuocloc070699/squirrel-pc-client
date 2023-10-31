@@ -44,9 +44,9 @@
                   {{ item.saved }}
                 </td>
                 <td class="px-6 py-4 text-right flex items-center">
-                  <AdminConverUploadFileToBook :data="item"/>
+                  <AdminConverUploadFileToBook :data="item" :loading="loading"/>
                   
-                    <AdminDeleteUploadFileItem :id="item.id" @delete="handleDelete"/>
+                    <AdminDeleteUploadFileItem :id="item.id" @delete="handleDelete" :loading="loading"/>
                 </td>
             </tr>
         </tbody>
