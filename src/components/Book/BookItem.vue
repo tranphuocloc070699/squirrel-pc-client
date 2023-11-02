@@ -24,7 +24,7 @@
           v-if="book.author"
           class=" ml-4 text-sm inline-block    font-medium py-1"
         >
-          By: <span class="text-blue-600 font-medium cursor-pointer underline">{{ book.author.name }}</span>
+          By: <RouterLink :to="`/author/${book.author.id}`" class="text-blue-600 font-medium cursor-pointer underline">{{ book.author.name }}</RouterLink>
         </h5>
     
       </div>

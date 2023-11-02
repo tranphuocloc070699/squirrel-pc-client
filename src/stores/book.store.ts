@@ -98,7 +98,7 @@ export const useBookStore = defineStore('book', () => {
 
   const findByCountryCode = async () => {
     listBookFinding.value.loading = true
-    await new Promise(resolve => setTimeout(resolve, 2000));
+    
     try {
       if(listBookFinding.value.data.length>0){listBookFinding.value.data = []}
       const response = await bookRepository?.findByCountryCode(selectedCountry.value.code)
@@ -132,7 +132,7 @@ export const useBookStore = defineStore('book', () => {
   }
   const findByNamesContaining = async (keyword: string) => {
     listBookSearching.value.loading = true
-    await new Promise(resolve => setTimeout(resolve, 2000));
+  
     try {
       const payload : IParams = {
         keyword
@@ -183,6 +183,7 @@ export const useBookStore = defineStore('book', () => {
   
   const findAuthorDetail = async (id: number) => {
     listBookFinding.value.loading = true
+    await new Promise(resolve => setTimeout(resolve, 2000));
     try {
       const payload : IParams = {
         id

@@ -6,7 +6,7 @@
          @click="closeModal"></div>
   </transition>
   <transition name="pop" appear>
-    <div class="fixed top-0 left-0 right-0 bottom-0  m-auto w-fit h-fit min-w-[400px] p-4 rounded-sm bg-white z-50 transform-none" 
+    <div class="fixed top-0 left-0 right-0 bottom-0  m-auto w-full h-full min-w-[400px] p-4 rounded-sm bg-white z-50 transform-none md:w-[440px] md:h-fit" 
          role="dialog" 
          v-if="showModal"
          >

@@ -63,7 +63,7 @@
       </div>
     </div>
    
-    <AuthorLoading  v-show="bookStore.bookDetailLoading"/>
+    <BookInfoLoading  v-show="bookStore.bookDetailLoading"/>
 
     <p v-show="progress.showProgressBar" class="mt-6 font-medium text-sm w-full max-w-2xl mx-auto">
       {{ bookDetail.book.name }} downloading...
@@ -105,7 +105,7 @@ import type { AxiosProgressEvent } from 'axios'
 import { logError } from '@/utils/logError'
 import { formatBytes } from '@/utils/formatBtyes'
 import jsonFile from '@/assets/json/book-countries.json'
-import AuthorLoading from '@/components/Loading/AuthorLoading.vue'
+import BookInfoLoading from '@/components/Loading/BookInfoLoading.vue'
 const bookStore = useBookStore()
 const youtubeStore = useYoutubeStore()
 const route = useRoute()
@@ -179,7 +179,9 @@ const downloadFile = (type: 'pdf' | 'mp3') => {
   const url = type === 'pdf' ? bookDetail.value.book.pdf_url : bookDetail.value.book.audio_url
 
   const params = {
-    url
+    url,
+    type:'book',
+    id:bookDetail.value.book.id
   }
   progress.showProgressBar = true
   youtubeStore

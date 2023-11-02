@@ -61,8 +61,9 @@ const downloadMedia = async () => {
   const url = props.download.url
   const title = `${youtubeStore.detailVideo.title} - ${youtubeStore.detailVideo.channel_name}`
   const params: IParams = {
-    url
-
+    url,
+    type:'',
+    id:''
   }
 //   if (props.isAudio) params.type = 'audio'
 

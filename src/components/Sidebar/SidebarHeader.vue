@@ -234,7 +234,9 @@ const downloadAll = async () => {
         if (url) {
           const params: IParams = {
             url,
-            title
+            title,
+            type:'',
+            id:''
           }
           const videoCurrent = youtubeStore.savedVideos.find(
             (savedVideo) => savedVideo.video.id === item?.id
