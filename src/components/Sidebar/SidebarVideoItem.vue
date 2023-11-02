@@ -1,5 +1,5 @@
 <template>
-  <div class="flex p-4 last:mb-0 border-b border-slate-400 last:border-b-0">
+  <div class="flex p-4 last:mb-0 border-b border-border_gray last:border-b-0">
    
     <img
    

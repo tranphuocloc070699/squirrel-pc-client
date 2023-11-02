@@ -1,5 +1,5 @@
 import RepositoryFactory from '@/repositories/factory'
-import type { IAuthor, IBook, ICategory, IParams, IPodcastItem } from '@/types'
+import type { IAuthor, IBook, IBookCountry, ICategory, IParams, IPodcastItem } from '@/types'
 import { logError } from '@/utils/logError'
 import type { AxiosProgressEvent } from 'axios'
 import { defineStore } from 'pinia'
@@ -27,8 +27,15 @@ const uploadPdfFileLoading = ref(false)
 const bookDetailLoading = ref(false)
 
 
+const searchBook = ref({
+  keyword:'',
+  country_code:'all'
+})
 
-const selectedCountry = ref('en')
+const selectedCountry = ref<IBookCountry>({
+  name:'English',
+  code:'en'
+})
 
 const allBook = ref<IBookList>({
   loading: false,
@@ -75,7 +82,7 @@ export const useBookStore = defineStore('book', () => {
   const findAllBook = async () => {
     allBook.value.loading = true
     try {
-      const response = await bookRepository?.findByCountryCode(selectedCountry.value)
+      const response = await bookRepository?.findByCountryCode(selectedCountry.value.code)
       if(response?.data){
         allBook.value.data = response.data
         return response.data
@@ -92,7 +99,7 @@ export const useBookStore = defineStore('book', () => {
   const findByCountryCode = async () => {
     listBookFinding.value.loading = true
     try {
-      const response = await bookRepository?.findByCountryCode(selectedCountry.value)
+      const response = await bookRepository?.findByCountryCode(selectedCountry.value.code)
       if(response?.data){
         listBookFinding.value.data = response.data
         return response.data
@@ -120,13 +127,11 @@ export const useBookStore = defineStore('book', () => {
       bookDetailLoading.value = false
     }
   }
-
   const findByNamesContaining = async (keyword: string) => {
     listBookSearching.value.loading = true
     try {
       const payload : IParams = {
-        queryOrId:keyword,
-        countryCode:selectedCountry.value
+        keyword
       }
       const response = await bookRepository?.findByNamesContaining(payload)
       if(response?.data){
@@ -139,41 +144,66 @@ export const useBookStore = defineStore('book', () => {
       listBookSearching.value.loading = false
     }
   }
-  const findByCategoryId = async (id: number) => {
-    listBookFinding.value.loading = true
+
+  const findByNamesContainingAndCountryCode = async (payload :IParams) => {
+    listBookSearching.value.loading = true
     try {
-      const payload : IParams = {
-        id,
-        country_code:selectedCountry.value
-      }
-      const response = await bookRepository?.findByCategoryId(payload)
+   
+      const response = await bookRepository?.findByNamesContainingAndCountryCode(payload)
       if(response?.data){
-        listBookFinding.value.data = response.data
+        listBookSearching.value.data = response.data
         return response.data
       }
     } catch (error) {
-      logError(error, '[STORE] useBookStore/findByCategoryId')
+      logError(error, '[STORE] useBookStore/findByNamesContainingAndCountryCode')
+    } finally {
+      listBookSearching.value.loading = false
+    }
+  }
+  const findByCategory = async (payload : IParams) => {
+    listBookFinding.value.loading = true
+    try {
+     
+      const response = await bookRepository?.findByCategory(payload)
+      if(response?.data){
+        // listBookFinding.value.data = response.data
+        return response.data
+      }
+    } catch (error) {
+      logError(error, '[STORE] useBookStore/findByCategory')
     } finally {
       listBookFinding.value.loading = false
     }
   }
-
-  const findByAuthorId = async (id: number) => {
+  
+  const findAuthorDetail = async (id: number) => {
     listBookFinding.value.loading = true
     try {
       const payload : IParams = {
-        id,
-        country_code:selectedCountry.value
+        id
       }
-      const response = await bookRepository?.findByAuthorId(payload)
+      const response = await bookRepository?.findAuthorDetail(payload)
       if(response?.data){
         listBookFinding.value.data = response.data.bookList
         return response.data
       }
     } catch (error) {
-      logError(error, '[STORE] useBookStore/findByAuthorId')
+      logError(error, '[STORE] useBookStore/findAuthorDetail')
     } finally {
       listBookFinding.value.loading = false
+    }
+  }
+
+  const findByAuthorAndCountryCode = async (payload : IParams) => {
+    try {
+     
+      const response = await bookRepository?.findByAuthorAndCountryCode(payload)
+      if(response?.data){
+   
+        return response.data
+      }
+    } catch (error) {
+      logError(error, '[STORE] useBookStore/findByAuthorAndCountryCode')
     }
   }
 
@@ -218,14 +248,18 @@ export const useBookStore = defineStore('book', () => {
     selectedCountry,
     authorList,
     categoryList,
+    searchBook,
     uploadPdfFile,
     findByCountryCode,
     findById,
     findByNamesContaining,
-    findByAuthorId,
-    findByCategoryId,
+    findByNamesContainingAndCountryCode,
+    findAuthorDetail,
+    findByCategory,
     findAllAuthor,
     findAllCategory,
-    findAllBook
+    findAllBook,
+    findByAuthorAndCountryCode,
+    
   }
 })

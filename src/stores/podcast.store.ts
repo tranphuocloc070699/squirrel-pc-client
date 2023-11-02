@@ -43,7 +43,7 @@ export const usePodcastStore = defineStore('podcast', () => {
     }
   })
  
-  const selectedCountry = ref('VN');
+  const selectedCountry = ref('GB');
 
   const searchPodcasts = ref<ISearchPodcasts>({
     loading:false,

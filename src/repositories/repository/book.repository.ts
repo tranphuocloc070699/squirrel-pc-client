@@ -1,4 +1,4 @@
-import type { IAuthor, IBook, ICategory, IFindBookByAuthorResponse, IParams, IPodcastItem,IShowInfoAndEpisodes } from "@/types";
+import type { IAuthor, IBook, IBookDetailResponse, ICategory, IFindBookByAuthorResponse, IParams, IPodcastItem,IShowInfoAndEpisodes } from "@/types";
 import { AxiosBackend } from "../axios";
 import type { AxiosProgressEvent } from "axios";
 
@@ -30,31 +30,43 @@ export default{
         })
     },
     findById(id : number,category_id : number){
-        return AxiosBackend.get<IBook>(`/book/book/${id}`,{
+        return AxiosBackend.get<IBookDetailResponse>(`/book/${id}`,{
             params:{
                 category_id
             }
         })
     },
     findByNamesContaining(payload : IParams){
-        return AxiosBackend.post<IBook[]>(`/book/`,payload)
+        return AxiosBackend.post<IBook[]>(`/book/find-by-keyword`,payload)
     },
-    findByCategoryId(payload : IParams){
-        return AxiosBackend.get<IBook[]>(`/book/category`,{
+    findByNamesContainingAndCountryCode(payload : IParams){
+        return AxiosBackend.post<IBook[]>(`/book/find-by-keyword-and-country-code`,payload)
+    },
+    findByCategory(payload : IParams){
+        return AxiosBackend.get<IBook[]>(`/book/by-category`,{
             params:{
                 id:payload.id,
             country_code:payload.country_code
             }
         })
     },
-    findByAuthorId(payload : IParams){
-        return AxiosBackend.get<IFindBookByAuthorResponse>(`/book/author`,{
+    findAuthorDetail(payload : IParams){
+        return AxiosBackend.get<IFindBookByAuthorResponse>(`/book/by-author`,{
             params:{
-                id:payload.id,
-            country_code:payload.country_code
+                id:payload.id
             }
         })
     },
+    findByAuthorAndCountryCode(payload : IParams){
+        return AxiosBackend.get<IBook[]>(`/book/by-author-and-country-code`,{
+            params:{
+                id:payload.id,
+                country_code:payload.country_code
+            }
+        })
+    },
+
+    
     findAllCategories(){
         return AxiosBackend.get<ICategory[]>('/book/category')
     },

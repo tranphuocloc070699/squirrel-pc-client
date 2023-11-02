@@ -21,9 +21,13 @@ content: [
         blue_557:'#557A95',
         beige_b1a:'#b1a296',
         df:'#DFDFDF',
-        bg_primary:'#f5f5f7'
+        bg_primary:'#f5f5f7',
+        border_gray:'##EBEAEB'
       },
-      width:{
+      fontFamily:{
+        'lobster':'Lobster, sans-serif',
+        'roboto':'Roboto, sans-serif',
+        'noto':'Noto Sans, sans-serif'
       }
     }
   },

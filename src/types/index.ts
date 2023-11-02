@@ -156,3 +156,13 @@ export interface IFindBookByAuthorResponse {
   bookList:IBook[]
 }
 
+export interface IBookDetailResponse{
+  book:IBook;
+  related_list:IBook[]
+}
+
+export interface IBookCountry{
+  code:string;
+  name:string;
+}
+

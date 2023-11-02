@@ -34,11 +34,10 @@
           v-model="selectData.selected"
           class="block w-full px-4 py-2 pr-8 leading-tight bg-white border border-gray-400 rounded appearance-none focus:outline-none focus:bg-white focus:border-gray-500"
         >
-          <option v-for="item in selectData.options" :key="item.value" :value="item.value">
-            {{ item.text }}
+          <option v-for="item in selectData.options" :key="item.code" :value="item.code">
+            {{ item.name }}
           </option>
         </select>
-
         <div class="mt-4 text-xs text-slate-600  max-w-md">
           Do you want to share this file to everyone? we will store it online then everyone can download it
           <input type="checkbox" class="w-5 h-5 ml-2" v-model="saved" />
@@ -69,6 +68,7 @@ import { useBookStore } from '@/stores/book.store'
 import { logError } from '@/utils/logError'
 import ButtonLoading from '../Loading/ButtonLoading.vue'
 import { useNotification } from '@kyvg/vue3-notification'
+import jsonFile from '@/assets/json/book-countries.json'
 
 const { notify } = useNotification()
 const bookStore = useBookStore()
@@ -79,16 +79,7 @@ const modal = reactive({
 
 const selectData = ref({
   selected: 'en',
-  options: [
-    { text: 'English', value: 'en' },
-    { text: 'Indonesian', value: 'id' },
-    { text: 'German', value: 'de' },
-    { text: 'Vietnamese', value: 'vi' },
-    {
-      text: 'Chinese',
-      value: 'zh'
-    }
-  ]
+  options: JSON.parse(JSON.stringify(jsonFile))
 })
 
 const saved = ref(false)

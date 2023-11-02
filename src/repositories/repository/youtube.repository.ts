@@ -15,8 +15,8 @@ export default{
     getListDownload:(id : string) =>{
         return AxiosBackend.post<ILinkDownloadResponse>(`/youtube/video/download/list`,{id})
     },
-    downloadMediaFile(payload : IParams,onProgress: (progressEvent: AxiosProgressEvent) => void){
-        return AxiosBackend.put<Blob>(`/youtube/video/download`,payload,{
+    downloadFile(payload : IParams,onProgress: (progressEvent: AxiosProgressEvent) => void){
+        return AxiosBackend.put<Blob>(`/youtube/file/download`,payload,{
             timeout:0,
             responseType:'blob',
             onDownloadProgress: onProgress,

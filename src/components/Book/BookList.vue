@@ -1,6 +1,6 @@
 <template>
         <div class="mt-8">
-    <div class="mx-auto max-w-7xl w-full flex items-center justify-between px-4">
+    <div :class="['mx-auto max-w-7xl w-full flex items-center px-4',isTitleCenter ? 'justify-center' : 'justify-between']">
       <h3 class="flex items-center">
         <img :src="`/src/assets/images${icon}`" />
         <span class="ml-2 mt-1 font-semibold text-xl"
@@ -47,6 +47,10 @@ const props = defineProps({
   title: {
     type: String,
     default: ''
+  },
+  isTitleCenter:{
+    type:Boolean,
+    default:false
   },
   icon: {
     type: String,

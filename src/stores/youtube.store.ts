@@ -148,13 +148,13 @@ export const useYoutubeStore = defineStore('youtube', () => {
     }
   }
 
-  const downloadMediaFile = async (payload: IParams,onDownloadProgress : (progressEvent: AxiosProgressEvent) => void) => {
+  const downloadFile = async (payload: IParams,onDownloadProgress : (progressEvent: AxiosProgressEvent) => void) => {
     downloadMediaLoading.value= true
     try {
-      const response = await youtubeRepository?.downloadMediaFile(payload,onDownloadProgress)
+      const response = await youtubeRepository?.downloadFile(payload,onDownloadProgress)
       return response?.data
     } catch (error) {
-      logError(error, '[STORE] downloadMediaFile/getListDownload')
+      logError(error, '[STORE] downloadFile/getListDownload')
     } finally {
       downloadMediaLoading.value = false
     }
@@ -194,7 +194,7 @@ export const useYoutubeStore = defineStore('youtube', () => {
     listVideoByChannelId,
     searchByKeyword,
     getListDownload,
-    downloadMediaFile,
+    downloadFile,
     listTrendingVideo,
     getChannelInfoByChannelId,
     listVideoErrorMessage,

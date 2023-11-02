@@ -17,8 +17,6 @@
           <h4 class="ellipsis-line-3 text-sm leading-5 mt-1 text-slate-600">{{ podcast.description }}</h4>
           <div class="flex items-center mt-2">
             <h5 class="text-xs text-gray-500 font-semibold">{{ dateConverter }}</h5>
-           
-     
           </div>
        
         </div>

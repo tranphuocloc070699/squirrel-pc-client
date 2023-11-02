@@ -61,15 +61,15 @@ const downloadMedia = async () => {
   const url = props.download.url
   const title = `${youtubeStore.detailVideo.title} - ${youtubeStore.detailVideo.channel_name}`
   const params: IParams = {
-    url,
-    title
+    url
+
   }
 //   if (props.isAudio) params.type = 'audio'
 
   progress.showProgressBar = true
 
   youtubeStore
-    .downloadMediaFile(params, handleProgress)
+    .downloadFile(params, handleProgress)
     .then((response) => {
       if (response) {
         progress.downloadProgress = 0

@@ -1,11 +1,16 @@
 <template>
   <LayoutDefault type="podcast">
-    <div class="mx-auto max-w-6xl w-full mt-8 rounded-md">
+    <div class="mx-auto max-w-6xl w-fit  mt-8 rounded-md">
+      <div class="mx-auto  flex items-center px-4">
+      <img :src="`/src/assets/images/star.svg`" />
+      <span class="ml-2 mt-1 font-noto text-xl">SHOW</span>
+   
+    </div>
       <div
         v-if="showInfoAndEpisodes.podcasts.length > 0 && showInfoAndEpisodes.show.id.length > 0"
-        class="flex p-4 border border-slate-400 mx-4 rounded-md"
+        class="mt-4 flex p-4 shadow rounded-lg mx-4"
       >
-        <img :src="showThumbnail" class="rounded-md object-cover" />
+        <img :src="showThumbnail" class="rounded-md object-cover w-20 h-20" />
         <div class="ml-4">
           <h2 class="uppercase text-lg font-medium">{{ showInfoAndEpisodes.show.name }}</h2>
           <h4 class="text-slate-700 text-sm">{{ showInfoAndEpisodes.show.description }}</h4>
@@ -17,7 +22,7 @@
         v-show="showInfoAndEpisodesLoading || showInfoAndEpisodes.podcasts.length > 0"
         :loading="showInfoAndEpisodesLoading"
         title="EPISODES"
-        icon="/search.svg"
+        icon="/star.svg"
         :podcasts="showInfoAndEpisodes.podcasts"
       ></PodcastList>
     </div>
