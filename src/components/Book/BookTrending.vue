@@ -23,10 +23,10 @@
     :books="bookStore.listBookFinding.data"
     :loading="bookStore.listBookFinding.loading"
     :country-select="true"
-    :title="`Downloadest`"
+    :title="`Most Downloadest`"
     :icon="`/star.svg`"
     >
-    <select v-model="bookStore.searchBook.country_code" class="block w-full px-4 py-2 pr-8 leading-tight bg-white border border-gray-400 rounded appearance-none focus:outline-none focus:bg-white focus:border-gray-500">
+    <select v-model="bookStore.selectedCountry.code" class="block w-full px-4 py-2 pr-8 leading-tight bg-white border border-gray-400 rounded-full appearance-none focus:outline-none focus:bg-white focus:border-gray-500">
     <option v-for="item in countries" :key="item.code" :value="item.code">
       {{ item.name }}</option>
 
@@ -53,7 +53,7 @@ watch(
 )
 
 let countries : IBookCountry[] = JSON.parse(JSON.stringify(jsonFile))
-countries.push({name:'All',code:'all'})
+countries.unshift({name:'All',code:'all'})
 
 
 

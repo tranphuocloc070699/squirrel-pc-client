@@ -33,8 +33,8 @@ const searchBook = ref({
 })
 
 const selectedCountry = ref<IBookCountry>({
-  name:'English',
-  code:'en'
+  name:'All',
+  code:'all'
 })
 
 const allBook = ref<IBookList>({
@@ -98,7 +98,9 @@ export const useBookStore = defineStore('book', () => {
 
   const findByCountryCode = async () => {
     listBookFinding.value.loading = true
+    await new Promise(resolve => setTimeout(resolve, 2000));
     try {
+      if(listBookFinding.value.data.length>0){listBookFinding.value.data = []}
       const response = await bookRepository?.findByCountryCode(selectedCountry.value.code)
       if(response?.data){
         listBookFinding.value.data = response.data
@@ -114,6 +116,7 @@ export const useBookStore = defineStore('book', () => {
 
   const findById = async (id : number,category_id : number) => {
     bookDetailLoading.value = true
+  
     try {
       const response = await bookRepository?.findById(id,category_id)
       if(response?.data){
@@ -129,6 +132,7 @@ export const useBookStore = defineStore('book', () => {
   }
   const findByNamesContaining = async (keyword: string) => {
     listBookSearching.value.loading = true
+    await new Promise(resolve => setTimeout(resolve, 2000));
     try {
       const payload : IParams = {
         keyword
@@ -147,6 +151,7 @@ export const useBookStore = defineStore('book', () => {
 
   const findByNamesContainingAndCountryCode = async (payload :IParams) => {
     listBookSearching.value.loading = true
+    await new Promise(resolve => setTimeout(resolve, 2000));
     try {
    
       const response = await bookRepository?.findByNamesContainingAndCountryCode(payload)

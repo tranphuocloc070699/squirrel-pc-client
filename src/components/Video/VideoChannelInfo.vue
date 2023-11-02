@@ -1,12 +1,12 @@
 <template>
     <div class="mt-8 mx-auto max-w-7xl w-full ">
-        <div class="mx-auto max-w-7xl w-full flex items-center px-4">
+        <div class="mx-auto max-w-xl w-full flex items-center px-4">
       <img :src="`/src/assets/images/star.svg`" />
       <span class="ml-2 mt-1 font-noto text-xl">CHANNEL</span>
    
     </div>
         <div v-if="!loading && channel.channelId.length>0 && errorMessage.length===0"
-            class="mt-8 mx-4 shadow rounded-lg p-4 inline-block"
+            class="mt-8 mx-4 max-w-xl shadow rounded-lg p-4 inline-block"
             >
             <div class="flex  items-start ">
                 <img v-if="channel.thumbnails.length>0" :src="channel.thumbnails[0].url" :width="channel.thumbnails[0].width" :height="channel.thumbnails[0].height" class=" object-cover rounded-full" />
@@ -15,7 +15,9 @@
                     <h4 class="font-medium text-xl">{{ channel.title }} <span class="ml-2 inline-block h-[24px] text-xs border border-blue_557 px-2 py-1 text-blue_739 rounded-3xl">{{ channel.subscribers }}</span></h4>
                 <h5 class="mt-3 text-sm text-slate-600">{{ channel.description }}</h5>
                 </div>
-                <a :href="props.channel.url" target="_blank" class="mt-3 font-normal max-w-[120px] text-sm text-primary hover:underline">YOUTUBE LINK</a>
+               <div class="flex justify-end">
+                <a :href="props.channel.url" target="_blank" class="mt-4 font-medium max-w-[120px] text-base text-primary hover:underline">YOUTUBE LINK</a>
+               </div>
             </div>
             </div>
         </div>
