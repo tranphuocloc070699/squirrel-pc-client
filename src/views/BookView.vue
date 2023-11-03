@@ -9,7 +9,6 @@
 
 import BookTrending from '@/components/Book/BookTrending.vue'
 import LayoutDefault from '@/layouts/LayoutDefault.vue'
-import { useBookStore } from '@/stores/book.store'
 
 </script>
 

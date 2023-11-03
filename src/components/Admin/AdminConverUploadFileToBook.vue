@@ -148,7 +148,8 @@ const handleSubmit = async () => {
     country_code: book.value.country_code,
     category_id: book.value.category_id,
     author_id: book.value.author_id,
-    file_upload_id:book.value.file_upload_id!
+    pdf_total_page:0,
+    audio_duration:0
   }
   console.log({request})
 

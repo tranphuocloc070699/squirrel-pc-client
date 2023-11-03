@@ -127,7 +127,8 @@ export interface IUpsertBookRequest {
   country_code: string
   category_id: number
   author_id: number
-  file_upload_id?: number
+  pdf_total_page:number,
+  audio_duration:number
 }
 
 export interface IAuthor {

@@ -1,8 +1,8 @@
 <template>
     <div>
-<div class="mt-6 mx-auto max-w-7xl w-full ">
+<!-- <div class="mt-6 mx-auto max-w-7xl w-full ">
   <ConvertPdf />
-</div>
+</div> -->
 <BookList
       :books="bookStore.listBookSearching.data"
       v-show="bookStore.listBookSearching.loading || bookStore.listBookSearching.data.length > 0"

@@ -1,9 +1,11 @@
 <template>
   <div class="max-w-7xl w-full mx-auto mt-6">
-    <div class="flex">
+    <div class="flex item-center justify-between">
       <h2 class="font-semibold mt-4 my-2">Books</h2>
+      <AdminUploadBook/>
     </div>
-    <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+
+    <div class=" overflow-x-auto shadow-md sm:rounded-lg">
       <table class="w-full text-sm text-left text-gray-500">
         <thead class="text-xs text-gray-700 uppercase bg-gray-50">
           <tr>
@@ -57,6 +59,7 @@
         </tbody>
       </table>
     </div>
+   
     <AppModal :show-modal="modal.show" :title="modal.title" @close="modal.show = false">
       <div class="w-[400px] mt-8">
        
@@ -144,6 +147,7 @@ import { reactive, ref } from 'vue'
 import AppModal from '../App/AppModal.vue'
 import { useAdminStore } from '@/stores/admin.store'
 import {useBookStore} from '@/stores/book.store'
+import AdminUploadBook from './AdminUploadBook.vue'
 const bookStore = useBookStore();
 const adminStore = useAdminStore()
 
@@ -184,6 +188,8 @@ const data = ref({
     country_code: '',
     category_id: 0,
     author_id: 0,
+    pdf_total_page:0,
+    audio_duration:0,
     file: null
   },
   delete: {
