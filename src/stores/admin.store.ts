@@ -10,13 +10,30 @@ const adminRepository = RepositoryFactory.admin
 const bookStore = useBookStore();
 const loading = ref(false)
 const uploadFiles = ref<IUploadFile[]>([])
-
+const accessToken = ref('')
 
 export const useAdminStore = defineStore('admin', () => {
+  const login = async (payload: IParams) => {
+    loading.value = true
+    try {
+      const response = await adminRepository?.login(payload)
+   if(response?.data){
+        accessToken.value = response.data.access_token
+      
+        return response?.data
+
+      }
+    } catch (error) {
+      logError(error, '[STORE] useAdminStore/login')
+    } finally {
+      loading.value = false
+    }
+  }
+
     const saveBook = async (payload: IUpsertBookRequest) => {
         loading.value = true
         try {
-          const response = await adminRepository?.saveBook(payload)
+          const response = await adminRepository?.saveBook(payload,accessToken.value)
 
        if(response?.data){
             const index = bookStore.allBook.data.findIndex((item) => item.id === response?.data.id)
@@ -39,7 +56,7 @@ export const useAdminStore = defineStore('admin', () => {
       const saveAuthor = async (payload: IAuthor) => {
         loading.value = true
         try {
-          const response = await adminRepository?.saveAuthor(payload)
+          const response = await adminRepository?.saveAuthor(payload,accessToken.value)
           if(response?.data){
             const index = bookStore.authorList.data.findIndex((item) => item.id === response?.data.id)
             if(index!== -1){
@@ -61,7 +78,7 @@ export const useAdminStore = defineStore('admin', () => {
       const saveCategory = async (payload: ICategory) => {
         loading.value = true
         try {
-          const response = await adminRepository?.saveCategory(payload)
+          const response = await adminRepository?.saveCategory(payload,accessToken.value)
           if(response?.data){
             const index = bookStore.categoryList.data.findIndex((item) => item.id === response?.data.id)
             if(index!== -1){
@@ -84,7 +101,7 @@ export const useAdminStore = defineStore('admin', () => {
       const deleteBook = async (payload: number) => {
         loading.value = true
         try {
-          const response = await adminRepository?.deleteBook(payload)
+          const response = await adminRepository?.deleteBook(payload,accessToken.value)
           if(response?.data){
             const index = bookStore.allBook.data.findIndex((item) => item.id === payload)
             if(index!== -1){
@@ -105,7 +122,7 @@ export const useAdminStore = defineStore('admin', () => {
       const findAllUploadFile = async () => {
         loading.value = true
         try {
-          const response = await adminRepository?.findAllUploadFile()
+          const response = await adminRepository?.findAllUploadFile(accessToken.value)
           uploadFiles.value = response?.data
           return response?.data
         } catch (error) {
@@ -118,7 +135,7 @@ export const useAdminStore = defineStore('admin', () => {
       const findUploadFileById = async (fileId : number) => {
         loading.value = true
         try {
-          const response = await adminRepository?.findUploadFileById(fileId);
+          const response = await adminRepository?.findUploadFileById(fileId,accessToken.value);
    
           return response?.data
         } catch (error) {
@@ -131,7 +148,7 @@ export const useAdminStore = defineStore('admin', () => {
       const deleteUploadFileById = async (fileId : number) => {
         loading.value = true
         try {
-          const response = await adminRepository?.deleteUploadFileById(fileId);
+          const response = await adminRepository?.deleteUploadFileById(fileId,accessToken.value);
    
           return response?.data
         } catch (error) {
@@ -144,7 +161,7 @@ export const useAdminStore = defineStore('admin', () => {
       const uploadFileToS3 = async (payload : IParams) => {
         loading.value = true
         try {
-          const response = await adminRepository?.uploadFileToS3(payload);
+          const response = await adminRepository?.uploadFileToS3(payload,accessToken.value);
    
           return response?.data
         } catch (error) {
@@ -159,6 +176,8 @@ export const useAdminStore = defineStore('admin', () => {
   return {
     loading,
     uploadFiles,
+    accessToken,
+    ref,
     saveBook,
     saveAuthor,
     saveCategory,
@@ -166,7 +185,8 @@ export const useAdminStore = defineStore('admin', () => {
     findAllUploadFile,
     findUploadFileById,
     deleteUploadFileById,
-    uploadFileToS3
+    uploadFileToS3,
+    login
   }
 
 })

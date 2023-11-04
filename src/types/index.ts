@@ -167,3 +167,16 @@ export interface IBookCountry{
   name:string;
 }
 
+export interface IUser{
+  id: string
+  email: string
+  role: string
+  name: string
+  password: string
+}
+
+export interface IAuthResponse{
+  user : IUser
+  access_token:string
+}
+

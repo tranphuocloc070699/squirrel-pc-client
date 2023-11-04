@@ -1,3 +1,4 @@
+
 import { createRouter, createWebHistory } from 'vue-router'
 
 const router = createRouter({
@@ -11,7 +12,11 @@ const router = createRouter({
     {
       path: '/admin',
       name: 'admin',
-      component: () => import('../views/AdminView.vue')
+      component: () => import('../views/AdminView.vue'),
+      beforeEnter: (to, from,next) => {
+        const isAdmin = localStorage.getItem("admin");
+        return isAdmin && isAdmin=='true' ? next() : false
+      },
     },
     {
       path: '/podcast',

@@ -43,6 +43,11 @@
               >AudioBooks</RouterLink
             >
           </li>
+          <li v-show="isAdmin">
+            <RouterLink to="/admin" class="p-2 cursor-pointer hover:text-blue_557"
+              >Admin</RouterLink
+            >
+          </li>
         </ul>
       </div>
     </div>
@@ -63,7 +68,7 @@ import SidebarHeader from '../Sidebar/SidebarHeader.vue'
 import type { ISidebarVideoItem } from '@/types'
 const router = useRouter()
 const youtubeStore = useYoutubeStore()
-
+const isAdmin = ref(false)
 const showSidebar = ref(false)
 
 const handleBackToHome = () => {
@@ -74,6 +79,9 @@ const handleBackToHome = () => {
 }
 
 onMounted(() => {
+  const adminData = localStorage.getItem("admin");
+  if(adminData && adminData=='true') isAdmin.value = true;
+
   const savedVideos: ISidebarVideoItem[] = localStorage.getItem('savedVideos')
     ? JSON.parse(localStorage.getItem('savedVideos')!)
     : []
