@@ -12,28 +12,28 @@ export default{
     saveBook:(payload : IUpsertBookRequest,accessToken:string) =>{
         return AxiosBackend.post<IBook>(`/admin/book`,payload,{
             headers:{
-                ...(accessToken.length>0 && {'Authorization':accessToken})
+                ...(accessToken.length>0 && {'Authorization':`Bearer ${accessToken}`})
             }
         })
     },
     saveAuthor:(payload : IAuthor,accessToken:string) =>{
         return AxiosBackend.post<IAuthor>(`/admin/author`,payload,{
             headers:{
-                ...(accessToken.length>0 && {'Authorization':accessToken})
+                ...(accessToken.length>0 && {'Authorization':`Bearer ${accessToken}`})
             }
         })
     },
     saveCategory:(payload : ICategory,accessToken:string) =>{
         return AxiosBackend.post<ICategory>(`/admin/category`,payload,{
             headers:{
-                ...(accessToken.length>0 && {'Authorization':accessToken})
+                ...(accessToken.length>0 && {'Authorization':`Bearer ${accessToken}`})
             }
         })
     },
     deleteBook:(bookId : number,accessToken:string) =>{
         return AxiosBackend.delete<string>(`/admin/book/${bookId}`,{
             headers:{
-                ...(accessToken.length>0 && {'Authorization':accessToken})
+                ...(accessToken.length>0 && {'Authorization':`Bearer ${accessToken}`})
             }
         })
     },
@@ -46,7 +46,7 @@ export default{
         return AxiosBackend.post<string>(`/admin/upload`,formData,{
             headers:{
                 'Content-Type': 'multipart/form-data',
-                ...(accessToken.length>0 && {'Authorization':accessToken})
+                ...(accessToken.length>0 && {'Authorization':`Bearer ${accessToken}`})
             }
         })
         
@@ -54,7 +54,7 @@ export default{
     findAllUploadFile(accessToken:string){
         return AxiosBackend.get<IUploadFile[]>('/admin/file',{
             headers:{
-                ...(accessToken.length>0 && {'Authorization':accessToken})
+                ...(accessToken.length>0 && {'Authorization':`Bearer ${accessToken}`})
             }
         })
     },
@@ -62,14 +62,14 @@ export default{
     findUploadFileById(fileId : number,accessToken:string){
         return AxiosBackend.get<IUploadFile>(`/admin/file/${fileId}`,{
             headers:{
-                ...(accessToken.length>0 && {'Authorization':accessToken})
+                ...(accessToken.length>0 && {'Authorization':`Bearer ${accessToken}`})
             }
         })
     },
     deleteUploadFileById(fileId : number,accessToken:string){
         return AxiosBackend.delete<string>(`/admin/file/${fileId}`,{
             headers:{
-                ...(accessToken.length>0 && {'Authorization':accessToken})
+                ...(accessToken.length>0 && {'Authorization':`Bearer ${accessToken}`})
             }
         })
     },

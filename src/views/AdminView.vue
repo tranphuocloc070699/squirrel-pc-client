@@ -21,7 +21,7 @@ import  LayoutDefault from '@/layouts/LayoutDefault.vue';
 import AdminUploadFileList from '@/components/Admin/AdminUploadFileList.vue';
 import { useAdminStore } from '@/stores/admin.store';
 import {useBookStore} from '@/stores/book.store';
-import { onMounted, ref } from 'vue';
+import { onMounted, ref, watch } from 'vue';
 import AdminTabs from '@/components/Admin/AdminTabs.vue';
 import AdminCategoryList from '@/components/Admin/AdminCategoryList.vue';
 import AdminAuthorList from '@/components/Admin/AdminAuthorList.vue';
@@ -39,6 +39,14 @@ onMounted(() => {
     bookStore.findAllCategory()
     bookStore.findAllBook()
 })
+watch(
+  () => adminStore.accessToken,
+  async (token) => {
+    if(token.length>0) adminLogged.value = true
+    
+  },
+  { immediate: true }
+)
 
 </script>
 
