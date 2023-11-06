@@ -1,12 +1,14 @@
 FROM node:lts-alpine as build-stage
 WORKDIR /app
 
-ENV VITE_BASE_URL_BACKEND=http://squirrel-sp-server:8080
+
 
 COPY package*.json ./
 # RUN npm install --production
 RUN npm install 
 COPY . .
+ENV VITE_BASE_URL_BACKEND=http://squirrel-sp-server:8080
+
 RUN npm run build
 
 # production stage

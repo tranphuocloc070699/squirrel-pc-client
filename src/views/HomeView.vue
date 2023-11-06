@@ -17,18 +17,12 @@ import { onMounted, watch } from 'vue';
 const youtubeStore = useYoutubeStore()
 const adminStore = useAdminStore();
 
-watch(
-  () => youtubeStore.selectedCountry,
-  async () => {
-    console.log('watched')
-    adminStore.hellUser();
-  },
-  { immediate: true }
-)
+
 
 
 onMounted( () =>{
-  console.log('mounted')
+
+
   window.addEventListener('beforeunload',  function  (e) { 
             e.preventDefault(); 
             this.alert('hello')
