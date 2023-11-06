@@ -78,9 +78,7 @@ export const useYoutubeStore = defineStore('youtube', () => {
       return response?.data
     } catch (error) {
       logError(error, '[STORE] useYoutubeStore/searchByKeyword')
-
-
-      
+    
     } finally {
       searchVideoLoading.value = false
     }
