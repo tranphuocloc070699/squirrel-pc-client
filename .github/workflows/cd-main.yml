@@ -71,5 +71,5 @@ jobs:
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
             cd ~/squirrel-sp-server
-            docker run -d 80:80 --rm --name squirrel-pc-client loctran070699/squirrel-pc-client
+            docker run -d -p 80:80 --name squirrel-pc-client loctran070699/squirrel-pc-client
           
