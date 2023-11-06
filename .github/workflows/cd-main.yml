@@ -75,7 +75,7 @@ jobs:
               docker stop squirrel-pc-client
               docker rm squirrel-pc-client
             fi
-            docker run -d -p 80:80 --name squirrel-pc-client --network db loctran070699/squirrel-pc-client
+            docker run -d -p 80:80 --name squirrel-pc-client --network squirrel-sp-server_db loctran070699/squirrel-pc-client
       
     - name: Send Telegram message on success
       if: ${{ steps.check-status.outcome == 'success' }}
