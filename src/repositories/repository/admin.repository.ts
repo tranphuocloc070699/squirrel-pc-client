@@ -6,6 +6,9 @@ import { AxiosBackend } from "../axios";
 
 
 export default{
+    helloUser:() =>{
+        return AxiosBackend.get<string>(`/user`)
+    },
     login:(payload : IParams) =>{
         return AxiosBackend.post<IAuthResponse>(`/user/login`,payload)
     },

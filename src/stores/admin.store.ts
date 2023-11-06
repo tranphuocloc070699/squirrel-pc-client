@@ -13,6 +13,18 @@ const uploadFiles = ref<IUploadFile[]>([])
 const accessToken = ref('')
 
 export const useAdminStore = defineStore('admin', () => {
+  const hellUser = async () =>{
+    loading.value = true
+    try {
+    await adminRepository?.helloUser()
+ 
+    } catch (error) {
+      logError(error, '[STORE] useAdminStore/hellUser')
+    } finally {
+      loading.value = false
+    }
+  }
+
   const login = async (payload: IParams) => {
     loading.value = true
     try {
@@ -186,7 +198,8 @@ export const useAdminStore = defineStore('admin', () => {
     findUploadFileById,
     deleteUploadFileById,
     uploadFileToS3,
-    login
+    login,
+    hellUser
   }
 
 })
