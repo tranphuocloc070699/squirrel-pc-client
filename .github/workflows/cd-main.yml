@@ -50,6 +50,7 @@ jobs:
       run: echo "BUILD_NUMBER=$(date '+%d.%m.%Y.%H.%M.%S')" >> $GITHUB_OUTPUT     
       
     - name: Build and push
+      id: build-push-dockerfile
       uses: docker/build-push-action@v5
       with:
         push: true
@@ -78,7 +79,7 @@ jobs:
             docker run -d -p 80:80 --network squirrel-sp-server_db loctran070699/squirrel-pc-client
       
     - name: Send Telegram message on success
-      if: ${{ steps.check-status.outcome == 'success' }}
+      # if: ${{ steps.check-status.outcome == 'success' }}
       uses: appleboy/telegram-action@master
       with:
         to: ${{ secrets.TELEGRAM_GROUP_ID }}
