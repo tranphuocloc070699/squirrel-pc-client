@@ -71,5 +71,38 @@ jobs:
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
             cd ~/squirrel-sp-server
-            docker run -d -p 80:80 --name squirrel-pc-client loctran070699/squirrel-pc-client
+            docker run -d -p 80:80 --name squirrel-pc-client --network db loctran070699/squirrel-pc-client
+      
+    - name: Send Telegram message on success
+      if: ${{ steps.check-status.outcome == 'success' }}
+      uses: appleboy/telegram-action@master
+      with:
+        to: ${{ secrets.TELEGRAM_GROUP_ID }}
+        token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+        message: |
+          <strong >SUCCESS ✅</strong>
+          Actor: <strong>${{ github.actor }}</strong>
+          Branch: <strong>${{ steps.extract_branch.outputs.branch }}</strong>
+          Repository: <strong>${{ github.repository }}</strong>
+            
+          <a href="https://github.com/${{ github.repository }}/commit/${{github.sha}}"><strong>Open URL</strong></a>
+        format: html
+        disable_web_page_preview: true
+
+    - name: Send Telegram message on fail
+      if: ${{ steps.check-status.outcome == 'failure' }}
+      uses: appleboy/telegram-action@master
+      with:
+        to: ${{ secrets.TELEGRAM_GROUP_ID }}
+        token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+        message: |
+          <strong >FAILURE ❌</strong>
+          Actor: <strong>${{ github.actor }}</strong>
+          Branch: <strong>${{ steps.extract_branch.outputs.branch }}</strong>
+          Repository: <strong>${{ github.repository }}</strong>
+            
+          <a href="https://github.com/${{ github.repository }}/commit/${{github.sha}}"><strong>Open URL</strong></a>
+        format: html
+        disable_web_page_preview: true
+
           
