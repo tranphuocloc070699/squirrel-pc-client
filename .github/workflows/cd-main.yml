@@ -71,7 +71,7 @@ jobs:
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
-            cd ~/squirrel-sp-server
+            cd ~/squirrel-pc-client
             if [ -n "$(docker ps -q -f name=squirrel-pc-client)" ]; then
               docker stop squirrel-pc-client
               docker rm squirrel-pc-client
