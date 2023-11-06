@@ -65,6 +65,7 @@ jobs:
           TARGET: ${{ secrets.TARGET_DIR }}
 
     - name: Executing remote ssh commands using ssh key
+      id: check-status
       uses: appleboy/ssh-action@master
       with:
           host: ${{ secrets.HOST_DNS }}
