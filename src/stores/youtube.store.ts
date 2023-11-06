@@ -155,7 +155,7 @@ export const useYoutubeStore = defineStore('youtube', () => {
       const response = await youtubeRepository?.downloadFile(payload,onDownloadProgress)
       return response?.data
     } catch (error) {
-      logError(error, '[STORE] downloadFile/getListDownload')
+      logError(error, '[STORE] useYoutubeStore/downloadFile')
     } finally {
       downloadMediaLoading.value = false
     }
@@ -172,7 +172,7 @@ export const useYoutubeStore = defineStore('youtube', () => {
       if (response?.data) trendingVideos.value = response?.data
       return response?.data
     } catch (error) {
-      logError(error, '[STORE] downloadMediaFile/listTrendingVideo')
+      logError(error, '[STORE] useYoutubeStore/listTrendingVideo')
       listVideoErrorMessage.value = 'Something went wrong, please try again later.'
     } finally {
       listTrendingVideoLoading.value = false
