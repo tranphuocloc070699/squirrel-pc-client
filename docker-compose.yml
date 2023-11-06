@@ -7,7 +7,8 @@ services:
     ports:
       - "80:80"
     networks:
-      - squirrel-sp-server_db
+      - springboot-server_db
 
 networks:
-  squirrel-sp-server_db:
+  springboot-server_db:
+    external: true
