@@ -21,7 +21,7 @@ const adminStore = useAdminStore();
 
 
 onMounted( () =>{
-  console.log('mounted on homeview test re build')
+  console.log('mounted on homeview 2')
 })
 
 </script>
