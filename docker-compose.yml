@@ -13,3 +13,4 @@ services:
 
 networks:
   squirrel-sp-server_db:
+    external: true
