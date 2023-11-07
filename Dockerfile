@@ -1,10 +1,13 @@
 FROM node:lts-alpine as build-stage
 WORKDIR /app
 
+
+
 COPY package*.json ./
+# RUN npm install --production
 RUN npm install 
 COPY . .
-ENV VITE_BASE_URL_BACKEND=http://172.18.0.3:8080
+ENV VITE_BASE_URL_BACKEND=http://3.99.249.201:8080
 
 RUN npm run build
 
