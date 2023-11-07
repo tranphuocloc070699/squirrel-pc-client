@@ -73,8 +73,9 @@ jobs:
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
             cd ~/squirrel-pc-client
-            docker compose down
-            docker compose up --force-recreate
+            docker rm -f squirrel-pc-client
+            docker rmi loctran070699/squirrel-pc-client
+            docker run -d -p 80:80 --name squirrel-pc-client --network squirrel-sp-server_db loctran070699/squirrel-pc-client
 
       
     - name: Send Telegram message on success
