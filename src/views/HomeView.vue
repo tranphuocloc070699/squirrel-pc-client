@@ -21,12 +21,7 @@ const adminStore = useAdminStore();
 
 
 onMounted( () =>{
-  console.log('mounted on homeview')
-
-  window.addEventListener('beforeunload',  function  (e) { 
-            e.preventDefault(); 
-            adminStore.hellUser();
-        }); 
+  adminStore.hellUser();
 })
 
 </script>
