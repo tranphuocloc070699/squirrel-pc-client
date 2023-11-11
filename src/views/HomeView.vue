@@ -20,8 +20,9 @@ const adminStore = useAdminStore();
 
 
 
-onMounted( () =>{
-  console.log('mounted on homeview 333')
+onMounted( async () =>{
+  const response  = await adminStore.hellUser()
+  console.log(response)
 })
 
 </script>
