@@ -22,7 +22,7 @@ const adminStore = useAdminStore();
 
 onMounted( async () =>{
   const response  = await adminStore.hellUser()
-  console.log(response)
+  console.log('hello User: ',response)
 })
 
 </script>
