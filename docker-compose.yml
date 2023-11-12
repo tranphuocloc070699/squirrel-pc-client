@@ -1,14 +1,16 @@
 version: '3'
 services:
   squirrel-pc-client:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    # build:
+    #   context: .
+    #   dockerfile: Dockerfile
+    container_name: squirrel-sp-client
+    image: loctran070699/squirrel-pc-client
     ports:
       - "80:80"
     networks:
-      - springboot-server_db
+      - squirrel-sp-server_db
 
 networks:
-  springboot-server_db:
+  squirrel-sp-server_db:
     external: true
