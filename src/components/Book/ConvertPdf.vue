@@ -85,7 +85,7 @@
             <p class="font-medium text-sm">Language you want to convert</p>
           <select
             v-model="selectData.selected"
-            class="block ml-2  px-3 py-1 pr-8 leading-tight bg-white border border-gray-400 rounded appearance-none focus:outline-none focus:bg-white focus:border-gray-500"
+            class="block ml-2  px-3 py-1 text-center leading-tight bg-white border border-gray-400 rounded appearance-none focus:outline-none focus:bg-white focus:border-gray-500"
           >
             <option v-for="item in selectData.options" :key="item.code" :value="item.code">
               {{ item.name }}

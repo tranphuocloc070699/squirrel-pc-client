@@ -11,7 +11,7 @@
       <div class="relative inline-block">
         <select
           v-model="youtubeStore.selectedCountry"
-          class="block w-full px-3 py-2 pr-8 leading-tight bg-white border border-gray-300 rounded-full appearance-none focus:outline-none focus:bg-white focus:border-gray-500"
+          class="block w-full px-3 py-2 text-center leading-tight bg-white border border-gray-300 rounded-full appearance-none focus:outline-none focus:bg-white focus:border-gray-500"
         >
           <option v-for="item in countries" :key="item.code" :value="item.code">
             {{ item.logo }}

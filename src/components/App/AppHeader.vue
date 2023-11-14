@@ -33,14 +33,14 @@
             >
           </li>
 
-          <li>
+          <!-- <li>
             <RouterLink to="/podcast" class="p-2 cursor-pointer hover:text-blue_557 "
               >Podcast</RouterLink
             >
-          </li>
+          </li> -->
           <li>
             <RouterLink to="/book" class="p-2 cursor-pointer hover:text-blue_557"
-              >AudioBooks</RouterLink
+              >Book</RouterLink
             >
           </li>
           <li v-show="isAdmin">

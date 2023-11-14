@@ -16,7 +16,7 @@ export const useAdminStore = defineStore('admin', () => {
   const hellUser = async () =>{
     loading.value = true
     try {
-    await adminRepository?.helloUser()
+   return await adminRepository?.helloUser()
  
     } catch (error) {
       logError(error, '[STORE] useAdminStore/hellUser')

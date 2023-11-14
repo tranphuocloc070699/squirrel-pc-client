@@ -13,7 +13,7 @@
     >
       <!-- Sidebar header -->
       <div class="flex items-center justify-between px-4 py-3 border-b border-border_gray">
-        <h2 class="text-lg font-medium font-noto text-center text-gray-800">STORING</h2>
+        <h2 class="text-lg font-medium font-noto text-center text-gray-800">VIDEO STORING</h2>
         <button class="text-gray-500 hover:text-gray-600" @click="$emit('toggleSidebar', false)">
           <svg class="w-10 h-10 fill-current" viewBox="0 0 24 24">
             <path
@@ -46,7 +46,7 @@
       <div v-if="!isDownloading" class="my-3 flex items-center justify-between px-4">
         <p
           @click="openConfirmModal('download')"
-          class="text-base py-1 px-3 font-normal rounded-full border border-[#333] hover:bg-[#333] hover:text-white"
+          class="cursor-pointer text-base py-1 px-3 font-normal rounded-full border border-[#333] hover:bg-[#333] hover:text-white"
         >
           Download All
         </p>
