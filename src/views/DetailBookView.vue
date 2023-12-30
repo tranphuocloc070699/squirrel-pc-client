@@ -1,5 +1,8 @@
 <template>
   <LayoutDefault type="book">
+    <p class="mx-auto max-w-7xl w-full py-2 px-4 mt-4 text-center bg-red-200 text-red-600 rounded">
+      This Page is for viewing. Features is not complete
+    </p>
     <div
       v-show="!bookStore.bookDetailLoading && bookDetail.book.name.length > 0"
       class="w-full max-w-2xl mx-auto flex md:flex-nowrap flex-wrap items-start mt-10 justify-between px-4 md:px-0"
@@ -84,7 +87,7 @@
     <BookList
       :books="bookDetail.related_list"
       title="Related List"
-      icon="/star.svg"
+      icon="star.svg"
       :loading="bookStore.bookDetailLoading"
       :isTitleCenter="true"
       class="mt-20"

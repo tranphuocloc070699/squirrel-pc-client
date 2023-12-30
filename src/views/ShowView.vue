@@ -27,7 +27,7 @@
         v-show="showInfoAndEpisodesLoading || showInfoAndEpisodes.podcasts.length > 0"
         :loading="showInfoAndEpisodesLoading"
         title="EPISODES"
-        icon="/star.svg"
+        icon="star.svg"
         :podcasts="showInfoAndEpisodes.podcasts"
       ></PodcastList>
     </div>

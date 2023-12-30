@@ -4,7 +4,7 @@
       v-show="podcastStore.searchPodcasts.loading || podcastStore.searchPodcasts.data.length > 0"
       :loading="podcastStore.searchPodcasts.loading"
       title="SEARCH"
-      icon="/search.svg"
+      icon="search.svg"
       :podcasts="podcastStore.searchPodcasts.data"
     ></PodcastList>
     <PodcastTrending></PodcastTrending>

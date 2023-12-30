@@ -1,7 +1,7 @@
 <template>
   <LayoutDefault>
 
-    <VideoList v-show="youtubeStore.searchVideoLoading || youtubeStore.searchVideos.length>0" :loading="youtubeStore.searchVideoLoading" title="SEARCH" icon="/search.svg" :videos="youtubeStore.searchVideos"></VideoList>
+    <VideoList v-show="youtubeStore.searchVideoLoading || youtubeStore.searchVideos.length>0" :loading="youtubeStore.searchVideoLoading" title="SEARCH" icon="search.svg" :videos="youtubeStore.searchVideos"></VideoList>
     <VideoTrending></VideoTrending>
   </LayoutDefault>
 </template>

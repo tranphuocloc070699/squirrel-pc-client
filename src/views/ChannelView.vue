@@ -9,7 +9,7 @@
       
       :loading="youtubeStore.searchVideoLoading"
       title="VIDEO FROM CHANNEL"
-      icon="/star.svg"
+      icon="star.svg"
       :videos="youtubeStore.searchVideos"
       :error-message="youtubeStore.listVideoErrorMessage"
     ></VideoList>
