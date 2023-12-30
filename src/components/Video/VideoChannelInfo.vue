@@ -1,7 +1,7 @@
 <template>
     <div class="mt-8 mx-auto max-w-7xl w-full ">
         <div class=" max-w-xl w-full flex items-center px-4">
-      <img :src="`/src/assets/images/star.svg`" />
+      <img :src="`/star.svg`" />
       <span class="ml-2 mt-1 font-noto text-xl">CHANNEL</span>
    
     </div>

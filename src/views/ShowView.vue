@@ -2,7 +2,7 @@
   <LayoutDefault type="podcast">
     <div class="mx-auto max-w-6xl w-full mt-8 rounded-md">
       <div class="mx-auto  flex items-center px-4">
-      <img :src="`/src/assets/images/star.svg`" />
+      <img :src="`/star.svg`" />
       <span class="ml-2 mt-1 font-noto text-xl">SHOW</span>
    
     </div>

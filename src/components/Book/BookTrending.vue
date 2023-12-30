@@ -9,7 +9,7 @@
       :loading="bookStore.listBookSearching.loading"
       :country-select="true"
       title="SEARCH RESULT"
-      icon="/search.svg"
+      icon="search.svg"
     >
     <select v-model="bookStore.searchBook.country_code" class="block w-full px-4 py-2 pr-8 leading-tight bg-white border border-gray-400 rounded appearance-none focus:outline-none focus:bg-white focus:border-gray-500">
     <option v-for="item in countries" :key="item.code" :value="item.code">
@@ -24,7 +24,7 @@
     :loading="bookStore.listBookFinding.loading"
     :country-select="true"
     :title="`Most Downloadest`"
-    :icon="`/star.svg`"
+    :icon="`star.svg`"
     >
     <select v-model="bookStore.selectedCountry.code" class="block w-full px-4 py-2 pr-8 leading-tight bg-white border border-gray-400 rounded-full appearance-none focus:outline-none focus:bg-white focus:border-gray-500">
     <option v-for="item in countries" :key="item.code" :value="item.code">

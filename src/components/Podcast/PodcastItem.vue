@@ -26,7 +26,7 @@
   
       <div class="flex gap-3 items-center justify-between p-4">
         <a ref="spotifyLinkRef" :href="`${SPOTIFY_LINK}/${podcast.id}`" target="_blank">
-          <img src="/src/assets/images/spotify.png" class="w-8 h-8" />
+          <img src="/spotify.png" class="w-8 h-8" />
           
         </a>
         <RouterLink  :to="`/podcast/${podcast.id}?name=${podcast.name}`" class="text-sm text-blue-700 font-semibold">LISTEN FULL</RouterLink>
@@ -34,7 +34,7 @@
         @click="handleClick"
           v-show="!isAdded"
           ref="plusVideoToStorageRef"
-          src="/src/assets/images/plus.svg"
+          src="/plus.svg"
           width="24"
           height="24"
           class="border border-blue_739 rounded p-1 z-10 cursor-pointer"

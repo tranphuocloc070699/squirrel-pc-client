@@ -2,7 +2,7 @@
   <div class="mt-8">
     <div class="mx-auto max-w-7xl w-full flex items-center justify-between px-4">
       <h3 class="flex items-center">
-        <img :src="`/src/assets/images${icon}`" />
+        <img :src="`/${icon}`" />
         <span class="ml-2 mt-1 font-noto  text-xl"
           >{{ title }}<span class="ml-2">{{ videoCountingForSearch }}</span></span
         >

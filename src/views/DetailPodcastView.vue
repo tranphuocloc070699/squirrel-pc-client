@@ -66,11 +66,11 @@
       
       <div class="flex justify-end mt-10 items-center">
         <a ref="spotifyLinkRef" :href="`${SPOTIFY_LINK}/${podcastDetail.id}`" target="_blank">
-          <img src="/src/assets/images/spotify.png" class="mr-4"  />
+          <img src="/spotify.png" class="mr-4"  />
           
         </a>
         <a ref="spotifyLinkRef" :href="`${LISTENNOTES_LINK}`" target="_blank">
-          <img src="/src/assets/images/listennotes.png" class="w-40 h-auto object-contain" />
+          <img src="/listennotes.png" class="w-40 h-auto object-contain" />
           
         </a>
         

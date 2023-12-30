@@ -7,7 +7,7 @@
       ]"
     >
       <h3 class="flex items-center">
-        <img :src="`/src/assets/images${icon}`" />
+        <img :src="`/${icon}`" />
         <span class="ml-2 mt-1 font-medium font-noto text-xl uppercase">{{ title }}</span>
       </h3>
       <div v-show="countrySelect">

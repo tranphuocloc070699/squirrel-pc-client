@@ -12,7 +12,7 @@
           @click="showSidebar = true"
           width="32"
           height="32"
-          src="/src/assets/images/gallery.svg"
+          src="/gallery.svg"
         />
         <span
           v-show="youtubeStore.savedVideos.length > 0"

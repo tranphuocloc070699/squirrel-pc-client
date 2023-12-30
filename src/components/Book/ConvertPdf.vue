@@ -23,14 +23,14 @@
           />
         </div>
         <div v-show="pageInfo.totalPage > 0" class="mt-6 flex item-start justify-between">
-          <img src="/src/assets/images/pdf-image.svg" />
+          <img src="/pdf-image.svg" />
           <div class="ml-3">
             <p class="text-sm font-medium">{{ pageInfo.filename }}</p>
             <p class="text-xs font-medium">{{ pageInfo.totalPage }} page</p>
           </div>
           <img
             @click="removeInputFile"
-            src="/src/assets/images/trash.svg"
+            src="/trash.svg"
             class="w-5 h-5  cursor-pointer hover:scale-105"
           />
         </div>

@@ -14,7 +14,7 @@
       />
       <img
         @click="onSubmit"
-        src="/src/assets/images/search-gray.svg"
+        src="/search-gray.svg"
         class="text-white m-1 px-4 block"
         type="submit"
       />
