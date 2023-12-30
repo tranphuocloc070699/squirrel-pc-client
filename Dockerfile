@@ -5,7 +5,7 @@ COPY package*.json ./
 # RUN npm install --production
 RUN npm install 
 COPY . .
-ENV VITE_BASE_URL_BACKEND=http://35.183.45.82:8080
+ENV VITE_BASE_URL_BACKEND=
 
 RUN npm run build
 
