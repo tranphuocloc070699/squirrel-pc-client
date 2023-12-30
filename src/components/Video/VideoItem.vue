@@ -35,13 +35,13 @@
 
     <div class="flex items-center justify-between p-4">
       <a ref="youtubeLinkRef" :href="`${YOUTUBE_LINK}${video.id}`" target="_blank">
-        <img src="/src/assets/images/youtube.png" />
+        <img src="/youtube.png" />
       </a>
       <img
       @click="handleClick"
         v-show="!isAdded"
         ref="plusVideoToStorageRef"
-        src="/src/assets/images/plus.svg"
+        src="/plus.svg"
         width="24"
         height="24"
         class=" rounded border  shadow-sm  p-1 w-6 h-6 z-10 cursor-pointer"

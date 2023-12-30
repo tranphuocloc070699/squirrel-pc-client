@@ -4,7 +4,7 @@
       v-show="youtubeStore.listTrendingVideoLoading || youtubeStore.trendingVideos.length > 0"
       :loading="youtubeStore.listTrendingVideoLoading"
       title="TRENDING"
-      icon="/music.svg"
+      icon="music.svg"
       :videos="youtubeStore.trendingVideos"
       :country-select="true"
     >

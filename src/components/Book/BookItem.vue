@@ -32,7 +32,7 @@
   
       <div class="flex items-center justify-between p-4">
         <!-- <a ref="spotifyLinkRef" :href="`${SPOTIFY_LINK}/${podcast.id}`" target="_blank">
-          <img src="/src/assets/images/spotify.png" />
+          <img src="/spotify.png" />
         </a> -->
         <div></div>
         <RouterLink  :to="`/book/${book.id}?category=${book.category.id}`" class="text-sm text-blue-700 font-semibold">LISTEN FULL</RouterLink>
