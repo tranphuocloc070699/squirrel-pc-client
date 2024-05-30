@@ -15,9 +15,9 @@ export function logError(error : AxiosError | any,name : string){
                 console.error(`[${name}] error with data: ${JSON.stringify(error.response.data)}`)
             }
         }
-    }
-    if(error.response==undefined || error.response==null){
+    }else{
         console.error(`[${name}] error without response`,error)
     }
+
 
 }
