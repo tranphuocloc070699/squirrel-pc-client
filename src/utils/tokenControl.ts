@@ -9,13 +9,14 @@ const { sign } = jsonwebtoken;
 //     hmacSignature = base64urlm.fromBase64(hmacSignature)
 //     return hmacSignature
 // }
+//and jjwt to verify on my spring boot server.
 
 
 export const generateToken = ( ) => {
+
     const payload = { message: 'Hello' };
     const secret = import.meta.env.VITE_JWT_SECRET;
-    console.log(secret)
-    const options = { expiresIn: '5s' };
+    const options = { expiresIn: '60s' };
     const token = sign(payload, secret, options);
     return token;
 }

@@ -10,13 +10,13 @@
         <div class="flex justify-between items-center">
           <h3 class="font-bold text-sm">USername</h3>
           
-          <!--  <img  src="/src/assets/images/liked.svg" alt="" class="w-5 h-5"> -->
+          <!--  <img  src="/liked.svg" alt="" class="w-5 h-5"> -->
         <div class="flex">
-            <img src="/src/assets/images/trash.svg"  width="20"
+            <img src="/trash.svg"  width="20"
             height="20"
             class="w-5 h-5 cursor-pointer hover:scale-x-110 transition-transform mr-6" alt="">
           <img
-            src="/src/assets/images/like.svg"
+            src="/like.svg"
             alt=""
             width="20"
             height="20"

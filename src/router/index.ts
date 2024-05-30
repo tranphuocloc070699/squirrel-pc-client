@@ -1,3 +1,4 @@
+
 import { createRouter, createWebHistory } from 'vue-router'
 
 const router = createRouter({
@@ -7,6 +8,15 @@ const router = createRouter({
       path: '/',
       name: 'home',
       component: () => import('../views/HomeView.vue')
+    },
+    {
+      path: '/admin',
+      name: 'admin',
+      component: () => import('../views/AdminView.vue'),
+      beforeEnter: (to, from,next) => {
+        const isAdmin = localStorage.getItem("admin");
+        return isAdmin && isAdmin=='true' ? next() : false
+      },
     },
     {
       path: '/podcast',
@@ -29,6 +39,16 @@ const router = createRouter({
       component: () => import('../views/BookView.vue')
     },
     {
+      path: '/author/:id',
+      name: 'author',
+      component: () => import('../views/AuthorView.vue')
+    },
+    {
+      path: '/category/:id',
+      name: 'category',
+      component: () => import('../views/CategoryView.vue')
+    },
+    {
       path: '/about',
       name: 'about',
       component: () => import('../views/AboutView.vue')
@@ -42,6 +62,11 @@ const router = createRouter({
       path: '/channel/:id',
       name: 'channel',
       component: () => import('../views/ChannelView.vue')
+    },
+    {
+      path: '/book/:id',
+      name: 'book-detail',
+      component: () => import('../views/DetailBookView.vue')
     },
     {
       path: '/feedback',

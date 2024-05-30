@@ -14,7 +14,7 @@ export const useYoutubeStore = defineStore('youtube', () => {
   const listTrendingVideoLoading = ref(false)
   const channelInfoLoading = ref(false)
 
-  const selectedCountry = ref('VN');
+  const selectedCountry = ref('US');
   const searchVideos = ref<IVideoItem[]>([])
   const detailVideo = ref<IVideoItem>({
     id: '',
@@ -78,6 +78,7 @@ export const useYoutubeStore = defineStore('youtube', () => {
       return response?.data
     } catch (error) {
       logError(error, '[STORE] useYoutubeStore/searchByKeyword')
+    
     } finally {
       searchVideoLoading.value = false
     }
@@ -148,13 +149,13 @@ export const useYoutubeStore = defineStore('youtube', () => {
     }
   }
 
-  const downloadMediaFile = async (payload: IParams,onDownloadProgress : (progressEvent: AxiosProgressEvent) => void) => {
+  const downloadFile = async (payload: IParams,onDownloadProgress : (progressEvent: AxiosProgressEvent) => void) => {
     downloadMediaLoading.value= true
     try {
-      const response = await youtubeRepository?.downloadMediaFile(payload,onDownloadProgress)
+      const response = await youtubeRepository?.downloadFile(payload,onDownloadProgress)
       return response?.data
     } catch (error) {
-      logError(error, '[STORE] downloadMediaFile/getListDownload')
+      logError(error, '[STORE] useYoutubeStore/downloadFile')
     } finally {
       downloadMediaLoading.value = false
     }
@@ -171,7 +172,7 @@ export const useYoutubeStore = defineStore('youtube', () => {
       if (response?.data) trendingVideos.value = response?.data
       return response?.data
     } catch (error) {
-      logError(error, '[STORE] downloadMediaFile/listTrendingVideo')
+      logError(error, '[STORE] useYoutubeStore/listTrendingVideo')
       listVideoErrorMessage.value = 'Something went wrong, please try again later.'
     } finally {
       listTrendingVideoLoading.value = false
@@ -194,7 +195,7 @@ export const useYoutubeStore = defineStore('youtube', () => {
     listVideoByChannelId,
     searchByKeyword,
     getListDownload,
-    downloadMediaFile,
+    downloadFile,
     listTrendingVideo,
     getChannelInfoByChannelId,
     listVideoErrorMessage,

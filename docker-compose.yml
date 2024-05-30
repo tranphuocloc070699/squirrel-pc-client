@@ -1,0 +1,16 @@
+version: '3'
+services:
+  squirrel-pc-client:
+    # build:
+    #   context: .
+    #   dockerfile: Dockerfile
+    container_name: squirrel-sp-client
+    image: loctran070699/squirrel-pc-client
+    ports:
+      - "80:80"
+    networks:
+      - squirrel-sp-server_db
+
+networks:
+  squirrel-sp-server_db:
+    external: true

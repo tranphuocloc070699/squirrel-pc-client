@@ -16,24 +16,25 @@
           </h3>
           <h4 class="ellipsis-line-3 text-sm leading-5 mt-1 text-slate-600">{{ podcast.description }}</h4>
           <div class="flex items-center mt-2">
-            <h5 class="text-xs text-gray-500 font-semibold">{{ dateConverter }}</h5>
-           
-     
+            <h5 class="text-sm font-medium text-blue_739">{{ dateConverter }}</h5>
+            <div  class="mx-2 h-[4px] w-[4px] bg-gray-500 rounded-full"></div>
+            <h5 class="text-sm font-medium text-blue_739">{{ durationConverter }}</h5>
           </div>
        
         </div>
       </div>
   
-      <div class="flex items-center justify-between p-4">
+      <div class="flex gap-3 items-center justify-between p-4">
         <a ref="spotifyLinkRef" :href="`${SPOTIFY_LINK}/${podcast.id}`" target="_blank">
-          <img src="/src/assets/images/spotify.png" />
+          <img src="/spotify.png" class="w-8 h-8" />
+          
         </a>
         <RouterLink  :to="`/podcast/${podcast.id}?name=${podcast.name}`" class="text-sm text-blue-700 font-semibold">LISTEN FULL</RouterLink>
         <!-- <img
         @click="handleClick"
           v-show="!isAdded"
           ref="plusVideoToStorageRef"
-          src="/src/assets/images/plus.svg"
+          src="/plus.svg"
           width="24"
           height="24"
           class="border border-blue_739 rounded p-1 z-10 cursor-pointer"
@@ -57,7 +58,7 @@
   const channelNameRef = ref(null)
   const youtubeStore = useYoutubeStore()
   const { notify } = useNotification()
-  
+  import { msToTime,dateConvertToYMD } from '@/utils/converter'
   const props = defineProps({
     podcast: {
       type: Object as () => IPodcastItem,
@@ -74,15 +75,14 @@
 //   })
 const durationConverter = computed(() =>{
   return(
-    Math.floor(props.podcast.duration / 1000 / 60) +
-    ':' +
-    Math.floor((props.podcast.duration / 1000) % 60)
+    msToTime(props.podcast.duration)
   )
 })
 
 const dateConverter = computed(() =>{
+
   return(
-    new Date(props.podcast.release_date).toLocaleDateString()
+     dateConvertToYMD(props.podcast.release_date)
   )
 })
   

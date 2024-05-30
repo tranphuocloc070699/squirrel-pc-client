@@ -1,10 +1,10 @@
 <template>
-  <div class="flex p-4 last:mb-0 border-b border-slate-400 last:border-b-0">
+  <div class="flex p-4 last:mb-0 border-b border-border_gray last:border-b-0">
    
     <img
    
       class="rounded-md w-24 h-24 object-cover"
-      :src="data.video.thumbnails[0].url || '/src/assets/images/placeholder.svg'"
+      :src="data.video.thumbnails[0].url || '/placeholder.svg'"
       alt="image sidebar"
       width="100"
       height="140"
@@ -14,7 +14,7 @@
         <h3 class="ellipsis-line ml-2 leading-4">
         {{ data.video.title }}
       </h3>
-      <img v-if="!data.progress?.showProgressBar" @click="$emit('removeVideoFromStorage',props.data.video.id)" src="/src/assets/images/trash.svg" width="16" height="16" class="ml-2 cursor-pointer " />
+      <img v-if="!data.progress?.showProgressBar" @click="$emit('removeVideoFromStorage',props.data.video.id)" src="/trash.svg" width="16" height="16" class="ml-2 cursor-pointer " />
       </div>
       <div v-if="data.progress">
         <div class="w-full bg-gray-200 rounded-full mx-2 mb-1 " v-show="data.progress.showProgressBar">

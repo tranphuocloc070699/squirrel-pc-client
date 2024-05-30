@@ -4,9 +4,7 @@
       <AppHeader />
     </header>
     <main class="flex-grow max-w-full">
-       <VideoSearching v-if="type==='youtube'"/>
-       <PodcastSearching v-if="type==='podcast'"/>
-       <BookSearching v-if="type==='book'"/>
+       <AppSearchData :type="type"/>
       <slot></slot>
         
     </main>
@@ -17,13 +15,13 @@
   </template>
 
 <script setup lang="ts">
-import AppHeader from '../components/App/AppHeader.vue'
-import AppFooter from '../components/App/AppFooter.vue'
-import VideoSearching from '@/components/Video/VideoSearching.vue';
-import PodcastSearching from '@/components/Podcast/PodcastSearching.vue';
-import  BookSearching from '@/components/Book/BookSearching.vue';
-
-
+// import AppHeader from '../components/App/AppHeader.vue'
+// import AppFooter from '../components/App/AppFooter.vue'
+// import  AppSearchData from '@/components/App/AppSearchData.vue';
+import { defineAsyncComponent } from 'vue';
+const AppSearchData = defineAsyncComponent(() => import('@/components/App/AppSearchData.vue'));
+const AppHeader = defineAsyncComponent(() => import('@/components/App/AppHeader.vue'));
+const AppFooter = defineAsyncComponent(() => import('@/components/App/AppFooter.vue'));
 defineProps({
   type: {
     type: String,

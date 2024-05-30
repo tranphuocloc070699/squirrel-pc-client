@@ -1,18 +1,18 @@
 <template>
-    <div >
+    <div class="fixed">
       <transition name="fade" appear>
     <div class="fixed top-0 left-0 right-0 bottom-0 bg-black opacity-50 z-40" 
          v-if="showModal" 
          @click="closeModal"></div>
   </transition>
   <transition name="pop" appear>
-    <div class="fixed top-0 left-0 right-0 bottom-0  m-auto w-fit h-fit min-w-[320px] p-4 rounded-sm bg-white z-50 transform-none" 
+    <div class="fixed top-0 left-0 right-0 bottom-0  m-auto w-full h-full min-w-[400px] p-4 rounded-sm bg-white z-50 transform-none md:w-[440px] md:h-fit" 
          role="dialog" 
          v-if="showModal"
          >
       <div class="flex justify-between items-center w-full">
     
-        <h3 class="text-lg font-semibold text-slate-700">{{ title }}</h3>
+        <h3 class="text-lg font-medium  uppercase">{{ title }}</h3>
         <button class="text-gray-500 hover:text-gray-600"  @click="closeModal">
           <svg class="w-8 h-8 fill-current" viewBox="0 0 24 24">
             <path

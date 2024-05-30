@@ -2,8 +2,8 @@
   <div class="mt-8">
     <div class="mx-auto max-w-7xl w-full flex items-center justify-between px-4">
       <h3 class="flex items-center">
-        <img :src="`/src/assets/images${icon}`" />
-        <span class="ml-2 mt-1 font-semibold text-xl"
+        <img :src="`/${icon}`" />
+        <span class="ml-2 mt-1 font-noto  text-xl"
           >{{ title }}<span class="ml-2">{{ videoCountingForSearch }}</span></span
         >
       </h3>
@@ -16,7 +16,7 @@
       class="w-full max-w-7xl mt-8 mx-auto "
       v-show="!loading && videos.length === 0 && errorMessage.length > 0"
     >
-      <span class="font-semibold text-base text-slate-500 shadow rounded-lg p-4 mx-4">{{ errorMessage }}</span>
+      <span class="font-noto  text-base text-slate-500 shadow rounded-lg p-4 mx-4">{{ errorMessage }}</span>
     </div>
 
     <div class="mt-8 mx-auto max-w-7xl w-full grid gap-8 px-4 grid-auto-fill">

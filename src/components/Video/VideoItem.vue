@@ -26,7 +26,7 @@
         <h5
         ref="channelNameRef"
           v-if="video.channel_name && video.channel_name.length > 0"
-          class="mt-3 text-sm inline-block border border-primary rounded text-primary px-4 py-1 hover:bg-primary hover:text-white"
+          class="mt-3 font-medium text-sm inline-block border shadow-sm rounded-full text-slate-800 px-4 py-1 hover:bg-black hover:text-white"
         >
           {{ video.channel_name }}
         </h5>
@@ -35,16 +35,16 @@
 
     <div class="flex items-center justify-between p-4">
       <a ref="youtubeLinkRef" :href="`${YOUTUBE_LINK}${video.id}`" target="_blank">
-        <img src="/src/assets/images/youtube.png" />
+        <img src="/youtube.png" />
       </a>
       <img
       @click="handleClick"
         v-show="!isAdded"
         ref="plusVideoToStorageRef"
-        src="/src/assets/images/plus.svg"
+        src="/plus.svg"
         width="24"
         height="24"
-        class="border border-blue_739 rounded p-1 z-10 cursor-pointer"
+        class=" rounded border  shadow-sm  p-1 w-6 h-6 z-10 cursor-pointer"
       />
       <!-- <div v-if="showDownload" class="w-full">
         <p class="text-sm font-semibold text-slate-500">
